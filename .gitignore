@@ -17,3 +17,5 @@ build/
 
 # Secrets
 .env
+main.pdf
+*-blx.bib
