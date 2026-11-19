@@ -1,0 +1,37 @@
+% Main file: connects the front matter, the chapters and the bibliography.
+% Compile: latexmk -lualatex main.tex
+\documentclass[12pt,a4paper]{report}
+\usepackage{style/report}
+
+% IEEE-style bibliography (STY-07). Sources come only from docs/sources.md.
+% NOTE: backend=bibtex because biber.exe hangs on this machine (even `biber --version`).
+\usepackage[backend=bibtex,style=ieee]{biblatex}
+\addbibresource{bib/references.bib}
+
+\begin{document}
+
+% ---- Front matter (separate numbering) ----
+\pagenumbering{roman}
+\input{frontmatter/titlepage}
+\input{frontmatter/abstract}
+\tableofcontents
+\listoffigures
+\listoftables
+\input{frontmatter/abbreviations}
+
+% ---- Body (pages 1-40) ----
+\cleardoublepage
+\pagenumbering{arabic}
+\input{chapters/ch1-intro}
+\input{chapters/ch2-problem}
+\input{chapters/ch3-literature}
+\input{chapters/ch4-market}
+\input{chapters/ch5-alternatives}
+\input{chapters/ch6-workplan}
+\input{chapters/ch7-risks}
+\input{chapters/ch8-summary}
+
+% ---- References (3 pages budget) ----
+\printbibliography[heading=bibintoc,title={מקורות}]
+
+\end{document}

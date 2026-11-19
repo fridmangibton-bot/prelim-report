@@ -1,8 +1,19 @@
-.env
+# LaTeX build artifacts
 *.aux
 *.log
 *.toc
+*.lof
+*.lot
 *.out
+*.bbl
+*.bcf
+*.blg
+*.run.xml
 *.fls
 *.fdb_latexmk
 *.synctex.gz
+*.bak
+build/
+
+# Secrets
+.env
