@@ -1,7 +1,7 @@
 % Main file: connects the front matter, the chapters and the bibliography.
-% Compile: latexmk -lualatex main.tex
-\documentclass[12pt,a4paper]{report}
-\usepackage{style/report}
+% Compile: latexmk main.tex  (output: build/main.pdf)
+% Design: style/report.cls ("Creator's Pre-Production Journal").
+\documentclass{style/report}
 
 % IEEE-style bibliography (STY-07). Sources come only from docs/sources.md.
 % NOTE: backend=bibtex because biber.exe hangs on this machine (even `biber --version`).

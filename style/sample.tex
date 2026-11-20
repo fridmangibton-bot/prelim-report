@@ -1,0 +1,37 @@
+% Design sample: one chapter opener page with the core elements.
+% Compile from the project root:  latexmk style/sample.tex  ->  build/sample.pdf
+% Placeholder content only; numbers here are not report data.
+\documentclass{style/report}
+
+\begin{document}
+\setcounter{chapter}{2}
+\chapter{סקירת ספרות}
+
+\section{עקביות חזותית של דמויות}
+
+פסקה זו מדגימה את גוף הטקסט: גופן David בגודל 12 נקודות, ריווח שורות 1.5 ויישור דו־צדדי.
+מערכות ליצירת וידאו (\textenglish{Text-to-Video}) מתמקדות בעקביות חזותית של הדמות בין סצנות,
+ושיטות כגון \textenglish{IP-Adapter} ו־\textenglish{LoRA} משמשות לשמירה על מראה הפנים.
+המספרים בטבלה \ref{tab:sample} הם דוגמה לעיצוב בלבד [TO-VERIFY].
+
+\begin{table}[h]
+  \centering
+  \caption{דוגמה לטבלה בעיצוב הדוח}
+  \label{tab:sample}
+  \begin{tabular}{l l c}
+    \headrow \hcell{כלי} & \hcell{סוג} & \hcell{תמיכה בעברית} \\
+    \textenglish{Tool A} & מסחרי     & חלקית \\ \rowrule
+    \textenglish{Tool B} & קוד פתוח  & לא    \\ \rowrule
+    \textenglish{Tool C} & מסחרי     & מלאה  \\
+  \end{tabular}
+\end{table}
+
+\begin{directornote}
+  בפרויקט שלנו, עקביות הדמות נמדדת על פני לפחות עשר סצנות, ובנוסף נבדקת רציפות העלילה בין פרקים.
+\end{directornote}
+
+\begin{notebox}
+  תיבת הערה כללית: רקע בצבע \textenglish{brandHighlight} וטקסט בצבע הדיו.
+\end{notebox}
+
+\end{document}

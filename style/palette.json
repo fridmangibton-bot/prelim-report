@@ -1,0 +1,8 @@
+{
+  "_comment": "Report palette. Mirror of the \\definecolor block in style/report.cls - change both together. brandAccent is for fills only, never for text.",
+  "paper": "#F8F3E8",
+  "ink": "#1E1B2E",
+  "brandMain": "#D6336C",
+  "brandAccent": "#F2C12E",
+  "brandHighlight": "#D9C8F5"
+}
