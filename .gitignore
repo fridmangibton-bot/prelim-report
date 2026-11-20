@@ -19,3 +19,6 @@ build/
 .env
 main.pdf
 *-blx.bib
+
+# Course booklet (third-party, local only; agents grep it)
+docs/book.txt
