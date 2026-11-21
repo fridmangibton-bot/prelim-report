@@ -4,13 +4,14 @@ Log of build and rendering problems. One entry per incident: ID, status, where i
 
 ## INC-001: Reversed order of a mixed Hebrew/English phrase
 
-- **Status:** open
+- **Status:** open (detector gap fixed; visual verdict needs the author)
 - **Date:** 2026-11-20
 - **Where:** `build/sample.pdf`, from `style/sample.tex`, body paragraph. Source: `\textenglish{IP-Adapter} ו־\textenglish{LoRA}`
 - **Symptom:** The phrase "LoRA [vav + maqaf] IP-Adapter" renders in reversed order. Read right-to-left, IP-Adapter appears first, and the vav is attached to LoRA.
 - **Category:** BiDi (booklet ch. 14: Hebrew and English on the same page, RTL, LTR and BiDi).
-- **Cause:** not yet investigated. A likely factor is the Hebrew prefix "ו־" sitting between two LTR runs, with no explicit direction marks around it.
-- **Fix:** pending.
+- **Cause:** not confirmed as a defect. On 2026-11-21 the source was rendered at 300 dpi next to variants (plain hyphen, `\textenglish{-}`, `\texthebrew{־}`, U+200F marks before/after). All eight render identically: from the right, `IP-Adapter`, then `ו`, then the maqaf, then `LoRA`. That is the correct logical RTL order, and it only looks reversed when scanned left to right. An RLM mark has no effect.
+- **Detector self-test:** the first run missed it (BUG list had D1/D10 only). Root cause of the miss: every Latin run was already wrapped, so D1/D2 had nothing to flag, and no check covered a Hebrew prefix between two `\textenglish{}` runs. Fix: D13 BIDI-ORDER added to the detector skill (medium, requests a visual check, no auto-fix). The second run flagged it as BUG-sample-02.
+- **Fix:** none needed in the source if the rendering above is what the author expects. If a different layout is wanted, the author should state it. Only `\textenglish{David}` in `sample.tex` was wrapped (D1).
 
 ## INC-002: `\LoadClass{report}` skipped the standard class
 

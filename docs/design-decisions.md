@@ -53,3 +53,8 @@ No other hues are used. In particular there is no purple beyond the light brandH
 - **Stickers and doodles.** They are fun on a cover but look unprofessional in an academic report. The post-it and the film strip already carry the "handmade" feel.
 - **Rotated boxes and handwritten fonts.** They hurt readability, and a script font has no reliable Hebrew support.
 - **Colour in body text.** Text is always ink, so the report stays readable in grayscale print.
+
+## Macro for English inside Hebrew
+
+- The class already provides English wrapping through polyglossia: `\textenglish{...}`. It is used in `style/sample.tex` and inside `style/report.cls`. No `\en` alias was added, so the agent skills and `docs/agents-setup.md` use `\textenglish` everywhere.
+
