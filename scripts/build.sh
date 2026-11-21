@@ -15,8 +15,8 @@ lua() {
 }
 
 lua
-if [ -f "build/$JOB.aux" ] && grep -q '\bibdata' "build/$JOB.aux"; then
-  bibtex "build/$JOB" >"build/$JOB.bibtex.out" 2>&1 || status=1
+if [ -f "build/$JOB.aux" ] && grep -q 'bibdata' "build/$JOB.aux"; then
+  BIBINPUTS="build;.;${BIBINPUTS:-}" bibtex "build/$JOB" >"build/$JOB.bibtex.out" 2>&1 || status=1
   grep -E '^(I couldn.t|.*rror)' "build/$JOB.bibtex.out"
 fi
 lua
