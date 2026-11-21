@@ -4,7 +4,7 @@
   "risks": [
     {"id": "R1", "name_he": "עלות הייצור גבוהה מהצפוי",          "P": 4, "I": 4, "placeholder": true},
     {"id": "R2", "name_he": "סחיפה של מראה הדמות",               "P": 4, "I": 5, "placeholder": true},
-    {"id": "R3", "name_he": "שינוי מחיר או API אצל ספק",          "P": 3, "I": 4, "placeholder": true},
+    {"id": "R3", "name_he": "שינוי מחיר או ממשק תכנות אצל ספק",          "P": 3, "I": 4, "placeholder": true},
     {"id": "R4", "name_he": "זכויות יוצרים",                      "P": 2, "I": 5, "placeholder": true},
     {"id": "R5", "name_he": "שימוש בדמות של אדם אמיתי (דיפ-פייק)", "P": 2, "I": 4, "placeholder": true},
     {"id": "R6", "name_he": "מדיניות פלטפורמות לגבי תוכן AI",     "P": 3, "I": 3, "placeholder": true},

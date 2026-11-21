@@ -7,6 +7,7 @@ Hebrew labels go through python-bidi so they render right-to-left in matplotlib.
 """
 import json
 import re
+import textwrap
 from pathlib import Path
 
 import matplotlib
@@ -49,20 +50,30 @@ placeholder_charts = []
 
 
 # ---------- helpers ----------
-def heb(text):
-    """Prepare a label for matplotlib.
+RLI, PDI = "⁧", "⁩"  # Unicode right-to-left isolate / pop directional isolate
 
-    matplotlib >= 3.11 shapes text with libraqm, which already applies the
-    Unicode bidi algorithm, so Hebrew is passed through unchanged. On older
-    matplotlib the string is converted to visual order with python-bidi.
+
+def heb(text, wrap=None):
+    """Prepare a label for matplotlib (see INC-006).
+
+    A label that contains Hebrew is wrapped in an RLI..PDI isolate so the base
+    direction is right-to-left even when it starts or ends with English or digits.
+    Each line is isolated separately, so wrapping (`wrap` = max characters per
+    line) never splits an isolate. Labels without Hebrew are returned unchanged.
+    On matplotlib < 3.11 (no libraqm) python-bidi converts to visual order instead.
     """
     text = str(text)
-    if NATIVE_BIDI:
-        return text
-    return "\n".join(
-        get_display(line, base_dir="R") if HEB.search(line) else line
-        for line in text.split("\n")
-    )
+    if wrap:
+        text = "\n".join(textwrap.wrap(text, wrap, break_on_hyphens=False)) if "\n" not in text else text
+    out = []
+    for line in text.split("\n"):
+        if not HEB.search(line):
+            out.append(line)
+        elif NATIVE_BIDI:
+            out.append(RLI + line + PDI)
+        else:
+            out.append(get_display(line, base_dir="R"))
+    return "\n".join(out)
 
 
 def load(name):
@@ -94,8 +105,8 @@ def finish(fig, name, data):
     """Mark placeholder charts, save PDF."""
     if has_placeholder(data):
         placeholder_charts.append(name)
-        fig.text(0.01, 0.01, heb("נתוני דמה"), fontsize=8, color=MAIN, ha="left", va="bottom")
-    fig.savefig(OUT / name, format="pdf")
+        fig.text(0.01, 0.99, heb("נתוני דמה"), fontsize=8, color=MAIN, ha="left", va="top")
+    fig.savefig(OUT / name, format="pdf", bbox_inches="tight", pad_inches=0.12)
     plt.close(fig)
 
 
@@ -243,7 +254,7 @@ def chart_decision():
     for xi, t in zip(x, bottom):
         ax.text(xi, t + 0.05, f"{t:.2f}", ha="center", va="bottom", fontsize=10, fontweight="bold")
     ax.set_xticks(x)
-    ax.set_xticklabels([heb(a["label_he"]) for a in alts], fontsize=9)
+    ax.set_xticklabels([heb(a["label_he"], wrap=16) for a in alts], fontsize=9)
     ax.set_ylim(0, 5)
     ax.set_ylabel(heb("ציון משוקלל (מתוך 5)"))
     ax.grid(axis="y", color=INK, alpha=0.15)
@@ -292,17 +303,18 @@ def chart_gantt():
         ax.plot([xc], [ms_y], marker="D", ms=10, color=INK, zorder=5)
         ax.axvline(xc, color=INK, lw=0.8, ls="--", alpha=0.6, zorder=1)
         last = m["week"] >= weeks - 1
-        ax.text(weeks if last else xc, ms_y + 0.4, heb(m["name_he"]), ha="right" if last else "center",
-                va="center", fontsize=8.5)
+        ax.text(weeks if last else xc + 0.3, ms_y + 0.95, heb(m["name_he"], wrap=22),
+                ha="right" if last else "left", va="center", fontsize=8.5, zorder=6,
+                bbox=dict(fc=PAPER, ec="none", pad=1))
     ax.set_xlim(0, weeks)
-    ax.set_ylim(ms_y + 0.8, -0.7)
+    ax.set_ylim(ms_y + 1.5, -0.7)
     ax.set_xticks(np.arange(weeks) + 0.5)
     ax.set_xticklabels([str(i) for i in range(1, weeks + 1)], fontsize=9)
     ax.set_xticks(np.arange(weeks + 1), minor=True)
     ax.grid(axis="x", which="minor", color=INK, alpha=0.12)
     ax.tick_params(axis="x", which="both", length=0)
     ax.set_yticks(list(rows.values()) + [ms_y])
-    ax.set_yticklabels([heb(f"{wp['id']}: {wp['name_he']}") for wp in wps] + [heb("אבני דרך")], fontsize=9)
+    ax.set_yticklabels([heb(f"חבילה {wp['id'][2:]}: {wp['name_he']}", wrap=26) for wp in wps] + [heb("אבני דרך")], fontsize=9)
     ax.tick_params(axis="y", length=0)
     ax.set_xlabel(heb("שבוע"))
     for s in ("top", "right", "left"):
@@ -315,7 +327,7 @@ def chart_gantt():
                ms=8, label=heb("אבן דרך")),
     ]
     fig.legend(handles=handles, loc="lower center", ncol=4, fontsize=9, frameon=False)
-    fig.tight_layout(rect=(0, 0.07, 1, 1))
+    fig.tight_layout(rect=(0, 0.08, 1, 1))
     finish(fig, "ch6_gantt.pdf", d)
 
 
@@ -349,8 +361,8 @@ def chart_risk():
     ax.set_ylim(0.5, 5.5)
     ax.set_xticks(range(1, 6))
     ax.set_yticks(range(1, 6))
-    ax.set_xlabel(heb("השפעה (I)"))
-    ax.set_ylabel(heb("הסתברות (P)"))
+    ax.set_xlabel(heb("השפעה – I"))
+    ax.set_ylabel(heb("הסתברות – P"))
     ax.set_aspect("equal")
     for s in ax.spines.values():
         s.set_visible(False)
@@ -361,14 +373,16 @@ def chart_risk():
     lx.set_xlim(0, 1)
     lx.set_ylim(0, 1)
     ordered = sorted(risks, key=lambda r: -r["P"] * r["I"])
-    lx.text(1, 1, heb(f"סיכון (R = P×I)"), ha="right", va="top", fontsize=9.5, fontweight="bold")
+    lx.text(1, 1, heb("סיכון"), ha="right", va="top", fontsize=9.5, fontweight="bold")
     for k, r in enumerate(ordered):
         y = 0.90 - k * 0.115
         R = r["P"] * r["I"]
         crit = R >= thr
-        lx.text(1, y, heb(f"{r['id']}: {r['name_he']} ({R})"), ha="right", va="center", fontsize=8.5,
-                fontweight="bold" if crit else "normal")
-    fig.text(0.58, 0.04, heb(f"האזור הקריטי (R ≥ {thr}) מוצלל"), ha="left", fontsize=8.5)
+        w = "bold" if crit else "normal"
+        lx.text(1, y, r["id"], ha="right", va="center", fontsize=8.5, fontweight=w)
+        lx.text(0.88, y, heb(r["name_he"], wrap=34), ha="right", va="center", fontsize=8.5, fontweight=w)
+        lx.text(0.0, y, f"R={R}", ha="left", va="center", fontsize=8.5, fontweight=w)
+    fig.text(0.58, 0.04, heb(f"האזור הקריטי מוצלל: R ≥ {thr}"), ha="left", fontsize=8.5)
     finish(fig, "ch7_risk.pdf", d)
 
 

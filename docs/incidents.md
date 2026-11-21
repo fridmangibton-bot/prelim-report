@@ -57,3 +57,18 @@ Log of build and rendering problems. One entry per incident: ID, status, where i
 - **Symptom:** The short brandMain underline appeared about one line below the heading text. It was detached from the heading.
 - **Cause:** The underline was typeset as a separate line, in the titlesec after-code and then in a block shape. That line got its own baseline skip under 1.5 line spacing, and `\nointerlineskip` did not remove the gap.
 - **Fix:** Draw the underline as a zero-size TikZ overlay at the start (right side) of the heading line, 6–7.6 pt below the baseline (`\journal@underline`). It now hugs the heading and does not affect the spacing.
+
+## INC-006: Mixed Hebrew/English chart labels in the wrong order, some labels clipped
+
+- **Status:** fixed
+- **Date:** 2026-11-21
+- **Where:** `figures/python/make_figures.py`, all five charts in `figures/`
+- **Symptoms:**
+  - Labels that mix Hebrew with English terms or digits (API, AI, IP, WP1, "(0.10)") rendered in the wrong order, for example `ב-IP` turned into `IP-ב`.
+  - Some labels were clipped: long x tick labels, a milestone label overlapping the reserve-week band, and the placeholder watermark at the figure edge.
+- **Cause:** matplotlib's built-in bidi (libraqm) picks the base direction of a label from its first strong character and does not handle neutral punctuation (hyphens, parentheses, colons) next to a foreign run. Labels starting or ending with English or digits, or with a hyphen prefix, therefore came out reordered.
+- **Fix:**
+  - `heb()` wraps every label that contains Hebrew in an RLI..PDI isolate (U+2067 / U+2069), per line, so the base direction is always right-to-left. Older matplotlib falls back to python-bidi with `base_dir='R'`.
+  - Rewrote labels to avoid mixing: "WP1:" became "חבילה 1:", the English term was moved to the end of the label, and the risk key was split into separate ID, name and score texts.
+  - Long tick labels are wrapped to two or three lines with `heb(..., wrap=N)`; PDFs are saved with `bbox_inches="tight"`; milestone labels sit below the reserve bands; the watermark moved to the top-left corner inside the saved box.
+  - All five charts were regenerated and each mixed label was checked by eye in the rendered PDF.
