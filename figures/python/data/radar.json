@@ -1,5 +1,7 @@
 {
   "title_he": "השוואת פתרונות לפי שישה צירים",
+  "source": "docs/market-data.md section 3",
+  "basis_he": "הערכת צוות על בסיס תכונות מוצהרות בדפי המוצר, נבדק ב-21.11.2026",
   "scale": [1, 5],
   "axes": [
     {"key": "consistency", "label_he": "עקביות דמות"},
@@ -10,10 +12,10 @@
     {"key": "control", "label_he": "שליטת היוצר"}
   ],
   "series": [
-    {"name": "LTX Studio",        "ours": false, "values": [4, 3, 2, 2, 4, 3], "placeholder": true},
-    {"name": "OpenArt",           "ours": false, "values": [3, 3, 2, 2, 4, 3], "placeholder": true},
-    {"name": "LongStories.ai",    "ours": false, "values": [3, 4, 1, 3, 5, 2], "placeholder": true},
-    {"name": "תהליך ידני, למשל CapCut", "ours": false, "values": [2, 1, 3, 1, 2, 5], "placeholder": true},
-    {"name": "הפתרון המוצע",      "ours": true,  "values": [4, 3, 5, 5, 4, 4], "placeholder": true}
+    {"name": "LTX Studio",        "ours": false, "values": [4, 3, 1, 2, 3, 5]},
+    {"name": "LongStories.ai",    "ours": false, "values": [4, 2, 1, 4, 4, 2]},
+    {"name": "Atlabs",            "ours": false, "values": [4, 4, 3, 2, 3, 3]},
+    {"name": "CapCut (ידני)",     "ours": false, "values": [1, 4, 4, 1, 2, 5]},
+    {"name": "הפתרון המוצע (יעד תכנון)", "ours": true, "values": [4, 4, 5, 5, 5, 4]}
   ]
 }

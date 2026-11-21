@@ -116,7 +116,7 @@ def chart_radar():
     labels = [heb(a["label_he"]) for a in d["axes"]]
     n = len(labels)
     angles = np.linspace(0, 2 * np.pi, n, endpoint=False)
-    fig = plt.figure(figsize=(6.3, 5.4))
+    fig = plt.figure(figsize=(6.3, 5.9))
     ax = fig.add_subplot(111, polar=True)
     ax.set_theta_offset(np.pi / 2)
     ax.set_theta_direction(-1)
@@ -126,7 +126,7 @@ def chart_radar():
     ax.set_yticklabels([str(v) for v in range(lo, hi + 1)], fontsize=8)
     ax.set_xticks(angles)
     ax.set_xticklabels(labels, fontsize=10)
-    ax.tick_params(axis="x", pad=10)
+    ax.tick_params(axis="x", pad=24)
     ax.grid(color=INK, alpha=0.2)
     ax.spines["polar"].set_color(INK)
     ax.spines["polar"].set_alpha(0.4)
@@ -144,37 +144,51 @@ def chart_radar():
             k += 1
             ax.plot(ang, vals, color=INK, lw=1.4, ls=ls, marker=mk, ms=4.5, alpha=0.85, zorder=3)
             handles.append(Line2D([0], [0], color=INK, lw=1.4, ls=ls, marker=mk, ms=4.5, label=heb(s["name"])))
-    fig.legend(handles=handles, loc="lower center", ncol=3, fontsize=9, frameon=False)
-    fig.subplots_adjust(top=0.92, bottom=0.17, left=0.17, right=0.83)
+    fig.legend(handles=handles, loc="lower center", bbox_to_anchor=(0.5, 0.06), ncol=2, fontsize=9, frameon=False)
+    fig.text(0.5, 0.01, heb(d["basis_he"]), ha="center", va="bottom", fontsize=8.5)
+    fig.subplots_adjust(top=0.92, bottom=0.30, left=0.20, right=0.80)
     finish(fig, "ch4_radar.pdf", d)
 
 
 # ---------- ch4: scatter ----------
 def chart_scatter():
     d = load("scatter.json")
-    fig, ax = plt.subplots(figsize=(6.3, 4.2))
+    fig, ax = plt.subplots(figsize=(6.3, 4.6))
     markers = ["o", "s", "^", "D"]
     k = 0
+    offsets = {"OpenArt": (8, -4), "Atlabs": (-8, 8)}
     for p in d["points"]:
         if p["ours"]:
-            ax.scatter(p["cost_usd"], p["consistency"], s=170, marker="*", color=MAIN,
-                       edgecolor=INK, lw=0.8, zorder=5)
-            ax.annotate(heb(p["name"]), (p["cost_usd"], p["consistency"]), xytext=(8, 8),
-                        textcoords="offset points", fontsize=10, fontweight="bold", color=INK)
+            xm = (p["price_min"] + p["price_max"]) / 2
+            ax.errorbar(xm, p["capabilities"], xerr=(p["price_max"] - p["price_min"]) / 2,
+                        fmt="none", ecolor=MAIN, elinewidth=2, capsize=5, zorder=4)
+            ax.scatter(xm, p["capabilities"], s=230, marker="*", facecolor=PAPER,
+                       edgecolor=MAIN, lw=1.8, zorder=5)
+            ax.annotate(heb(p["name"]), (xm, p["capabilities"]), xytext=(0, -20),
+                        textcoords="offset points", fontsize=10, fontweight="bold",
+                        color=INK, ha="center")
         else:
-            ax.scatter(p["cost_usd"], p["consistency"], s=60, marker=markers[k % 4],
-                       color=HIGHLIGHT, edgecolor=INK, lw=1.0, zorder=4)
+            mk = markers[k % 4]
             k += 1
-            ax.annotate(heb(p["name"]), (p["cost_usd"], p["consistency"]), xytext=(7, -12),
-                        textcoords="offset points", fontsize=9, color=INK)
+            star = "*" if p["to_verify"] else ""
+            ax.scatter(p["price_usd"], p["capabilities"], s=60, marker=mk,
+                       color=HIGHLIGHT, edgecolor=INK, lw=1.0, zorder=4)
+            dx, dy = offsets.get(p["name"], (8, -4))
+            label = p["name"] + star + (chr(10) + p["note_he"] if p.get("note_he") else "")
+            ax.annotate(heb(label), (p["price_usd"], p["capabilities"]), xytext=(dx, dy),
+                        textcoords="offset points", fontsize=9, color=INK,
+                        ha="right" if dx < 0 else "left")
     ax.set_xlabel(heb(d["x_label_he"]))
     ax.set_ylabel(heb(d["y_label_he"]))
-    ax.set_xlim(0, max(p["cost_usd"] for p in d["points"]) * 1.2)
-    ax.set_ylim(1, 5)
+    ax.set_xlim(0, 70)
+    ax.set_ylim(-0.3, 4.6)
+    ax.set_yticks(range(0, 5))
     ax.grid(color=INK, alpha=0.15)
-    for s in ("top", "right"):
-        ax.spines[s].set_visible(False)
-    fig.tight_layout()
+    for sp in ("top", "right"):
+        ax.spines[sp].set_visible(False)
+    fig.tight_layout(rect=(0, 0.09, 1, 1))
+    fig.text(0.98, 0.055, heb(d["footnote_he"]), ha="right", va="bottom", fontsize=8.5)
+    fig.text(0.5, 0.01, heb(d["basis_he"]), ha="center", va="bottom", fontsize=8.5)
     finish(fig, "ch4_scatter.pdf", d)
 
 
