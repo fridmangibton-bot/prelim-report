@@ -26,5 +26,5 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Secrets and API keys only in `.env` or environment variables, never in code.
 
 ## Build
-- Compile: `latexmk main.tex` (`.latexmkrc` selects LuaLaTeX and writes all output, including the PDF, to `build/`; output is `build/main.pdf`).
+- Compile: `bash scripts/build.sh` (lualatex, bibtex, lualatex x2; all output including the PDF goes to `build/`; output is `build/main.pdf`; prints only error lines). `latexmk` is not used because perl is missing on this machine. For another file: `bash scripts/build.sh style/sample.tex`.
 - On errors, show only the error lines from the log, not the full log.

@@ -19,7 +19,7 @@ description: Fixes exactly the bugs listed in a detector report for one chapter,
 
 ## Steps
 1. Apply the fixes.
-2. Compile once: `latexmk main.tex` (show only error lines).
+2. Compile once: `bash scripts/build.sh` (show only error lines).
 3. In the report, add a Status column value for every bug: fixed / not fixed (reason) / needs input.
 
 ## Output to the caller (max 4 lines)

@@ -33,7 +33,7 @@ Do not read other chapters unless you need a cross-reference label; then grep fo
 ## Steps
 1. Read the inputs above.
 2. Write the full chapter to `chapters/<file>.tex` (sections, subsections, tables, figure includes).
-3. Compile once: `latexmk main.tex`. If it fails, fix only errors in this chapter (max 2 attempts), show only error lines.
+3. Compile once: `bash scripts/build.sh`. If it fails, fix only errors in this chapter (max 2 attempts), show only error lines.
 4. Count words.
 5. Append to `docs/progress.md`: date, chapter, words, requirement IDs covered, open [TO-VERIFY] count.
 

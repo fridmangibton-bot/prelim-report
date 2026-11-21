@@ -4,14 +4,15 @@ Log of build and rendering problems. One entry per incident: ID, status, where i
 
 ## INC-001: Reversed order of a mixed Hebrew/English phrase
 
-- **Status:** open (detector gap fixed; visual verdict needs the author)
+- **Status:** closed - not a bug (false alarm)
 - **Date:** 2026-11-20
 - **Where:** `build/sample.pdf`, from `style/sample.tex`, body paragraph. Source: `\textenglish{IP-Adapter} ו־\textenglish{LoRA}`
 - **Symptom:** The phrase "LoRA [vav + maqaf] IP-Adapter" renders in reversed order. Read right-to-left, IP-Adapter appears first, and the vav is attached to LoRA.
 - **Category:** BiDi (booklet ch. 14: Hebrew and English on the same page, RTL, LTR and BiDi).
 - **Cause:** not confirmed as a defect. On 2026-11-21 the source was rendered at 300 dpi next to variants (plain hyphen, `\textenglish{-}`, `\texthebrew{־}`, U+200F marks before/after). All eight render identically: from the right, `IP-Adapter`, then `ו`, then the maqaf, then `LoRA`. That is the correct logical RTL order, and it only looks reversed when scanned left to right. An RLM mark has no effect.
 - **Detector self-test:** the first run missed it (BUG list had D1/D10 only). Root cause of the miss: every Latin run was already wrapped, so D1/D2 had nothing to flag, and no check covered a Hebrew prefix between two `\textenglish{}` runs. Fix: D13 BIDI-ORDER added to the detector skill (medium, requests a visual check, no auto-fix). The second run flagged it as BUG-sample-02.
-- **Fix:** none needed in the source if the rendering above is what the author expects. If a different layout is wanted, the author should state it. Only `\textenglish{David}` in `sample.tex` was wrapped (D1).
+- **Fix:** none needed. The source order renders correctly; the human reviewer misread a low-resolution screenshot. Only `\textenglish{David}` in `sample.tex` was wrapped (D1).
+- **Lesson:** mixed Hebrew/English must be checked at high resolution (300 dpi crop), never on a full-page screenshot. D13 stays a visual-confirmation check.
 
 ## INC-002: `\LoadClass{report}` skipped the standard class
 

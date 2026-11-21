@@ -31,17 +31,17 @@ The elements, the palette and what was deliberately left out are explained in [d
 
 Requirements:
 
-- [MiKTeX](https://miktex.org/) (or TeX Live) with **LuaLaTeX** and `latexmk`
+- [MiKTeX](https://miktex.org/) (or TeX Live) with **LuaLaTeX** and BibTeX
 - Fonts: David and Arial (included with Windows)
 - Python 3, for generating charts in `figures/python`
 
 Build:
 
 ```
-latexmk main.tex
+bash scripts/build.sh
 ```
 
-The output is `build/main.pdf`. To build the one-page design sample, run `latexmk style/sample.tex`, which writes `build/sample.pdf`.
+The output is `build/main.pdf`. To build the one-page design sample, run `bash scripts/build.sh style/sample.tex`, which writes `build/sample.pdf`.
 
 ## Agents workflow
 
