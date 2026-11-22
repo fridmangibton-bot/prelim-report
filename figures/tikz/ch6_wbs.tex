@@ -1,0 +1,19 @@
+% WBS diagram: root + 5 work packages (right-to-left order, WP1 on the right).
+\begin{tikzpicture}[
+    root/.style={draw, very thick, rounded corners=3pt, fill=brandHighlight, minimum width=6.4cm, minimum height=0.9cm, align=center, font=\small\bfseries},
+    wp/.style={draw, rounded corners=3pt, fill=paper, minimum width=2.45cm, text width=2.3cm, minimum height=2.1cm, align=center, inner sep=3pt, font=\footnotesize},
+    outb/.style={draw, dashed, rounded corners=2pt, minimum width=2.45cm, text width=2.3cm, minimum height=0.9cm, align=center, inner sep=2pt, font=\scriptsize},
+    ln/.style={thick, brandMain}]
+  \node[root] (r) at (0,3.2) {פלטפורמת מנהל סדרה בעברית};
+  \foreach \i/\x/\t/\o in {
+      1/5.2/{\textbf{חבילה 1}\\ספר הסדרה ומודל הנתונים}/{ספר סדרה פעיל},
+      2/2.6/{\textbf{חבילה 2}\\צוות הסוכנים והתזמור}/{צינור סוכנים},
+      3/0/{\textbf{חבילה 3}\\שילוב מודלי תמונה, וידאו וקול}/{שוט עם קול וכתוביות},
+      4/-2.6/{\textbf{חבילה 4}\\ממשק משתמש ומבחני שמישות}/{ממשק ודוח שמישות},
+      5/-5.2/{\textbf{חבילה 5}\\בדיקות, תיעוד והגנה}/{דוח בדיקות ומצגת}} {
+    \node[wp] (w\i) at (\x,0.7) {\t};
+    \node[outb] (o\i) at (\x,-1.1) {\o};
+    \draw[ln] (r.south) -- ++(0,-0.35) -| (w\i.north);
+    \draw[ln, ->] (w\i.south) -- (o\i.north);
+  }
+\end{tikzpicture}

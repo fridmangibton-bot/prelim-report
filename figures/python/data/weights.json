@@ -1,5 +1,5 @@
 {
-  "_comment": "Weights are fixed BEFORE scoring and must sum to 1.0. Scores 1-5, higher is always better (cost: 5 = cheapest per minute; vendor dependency: 5 = least dependent). All scores are team estimates without a source, hence placeholder.",
+  "_comment": "Weights are fixed BEFORE scoring and must sum to 1.0. Scores 1-5, higher is always better (cost: 5 = cheapest per minute; vendor dependency: 5 = least dependent). All scores are team estimates without a source, team assessment.",
   "criteria": [
     {"key": "quality",   "label_he": "איכות ועקביות",   "weight": 0.25},
     {"key": "cost",      "label_he": "עלות לדקה",       "weight": 0.20},
@@ -10,28 +10,28 @@
   ],
   "alternatives": [
     {"key": "A", "label_he": "א׳: מודל מכוונן עצמית", "scores": {
-      "quality":  {"score": 2, "placeholder": true, "rationale": "A small team cannot match the visual quality of frontier video models with its own fine-tune."},
-      "cost":     {"score": 3, "placeholder": true, "rationale": "Marginal cost per minute is low, but training and compute are amortized over few minutes."},
-      "hebrew":   {"score": 3, "placeholder": true, "rationale": "Full control over Hebrew data, but Hebrew voice and lip-sync would have to be built in-house."},
-      "dev_time": {"score": 1, "placeholder": true, "rationale": "Training and evaluating a video model does not fit in a 14-week semester."},
-      "vendor":   {"score": 5, "placeholder": true, "rationale": "No dependence on an external provider."},
-      "privacy":  {"score": 5, "placeholder": true, "rationale": "All data and weights stay in-house."}
+      "quality":  {"score": 2, "rationale": "A small team cannot match the visual quality of frontier video models with its own fine-tune."},
+      "cost":     {"score": 3, "rationale": "Marginal cost per minute is low, but training and compute are amortized over few minutes."},
+      "hebrew":   {"score": 3, "rationale": "Full control over Hebrew data, but Hebrew voice and lip-sync would have to be built in-house."},
+      "dev_time": {"score": 1, "rationale": "Training and evaluating a video model does not fit in a 14-week semester."},
+      "vendor":   {"score": 5, "rationale": "No dependence on an external provider."},
+      "privacy":  {"score": 5, "rationale": "All data and weights stay in-house."}
     }},
     {"key": "B", "label_he": "ב׳: שכבת סוכנים מעל מודלים מסחריים דרך API", "scores": {
-      "quality":  {"score": 4, "placeholder": true, "rationale": "Commercial models give the best available visual quality today."},
-      "cost":     {"score": 2, "placeholder": true, "rationale": "Every generated second is billed, so cost per finished minute is the highest."},
-      "hebrew":   {"score": 3, "placeholder": true, "rationale": "Hebrew support depends on each provider and is uneven across image, voice and lip-sync."},
-      "dev_time": {"score": 5, "placeholder": true, "rationale": "Only the agent layer is built; the models are ready-made."},
-      "vendor":   {"score": 1, "placeholder": true, "rationale": "Price, API or policy changes of a provider hit the product directly."},
-      "privacy":  {"score": 2, "placeholder": true, "rationale": "Scripts and character images are sent to third-party services."}
+      "quality":  {"score": 4, "rationale": "Commercial models give the best available visual quality today."},
+      "cost":     {"score": 2, "rationale": "Every generated second is billed, so cost per finished minute is the highest."},
+      "hebrew":   {"score": 3, "rationale": "Hebrew support depends on each provider and is uneven across image, voice and lip-sync."},
+      "dev_time": {"score": 5, "rationale": "Only the agent layer is built; the models are ready-made."},
+      "vendor":   {"score": 1, "rationale": "Price, API or policy changes of a provider hit the product directly."},
+      "privacy":  {"score": 2, "rationale": "Scripts and character images are sent to third-party services."}
     }},
     {"key": "C", "label_he": "ג׳: היברידי של קוד פתוח ושירות API", "scores": {
-      "quality":  {"score": 3, "placeholder": true, "rationale": "Open-source models for most shots and API only for hard shots: good but below pure API."},
-      "cost":     {"score": 4, "placeholder": true, "rationale": "Local generation lowers cost; API is paid only for a minority of shots."},
-      "hebrew":   {"score": 4, "placeholder": true, "rationale": "Open Hebrew speech models can be chosen locally, with an API fallback."},
-      "dev_time": {"score": 3, "placeholder": true, "rationale": "Needs GPU setup and routing logic on top of the agent layer."},
-      "vendor":   {"score": 3, "placeholder": true, "rationale": "Partial dependence: the API can be replaced by local models for most shots."},
-      "privacy":  {"score": 4, "placeholder": true, "rationale": "Most data stays local; only the hard shots leave the system."}
+      "quality":  {"score": 3, "rationale": "Open-source models for most shots and API only for hard shots: good but below pure API."},
+      "cost":     {"score": 4, "rationale": "Local generation lowers cost; API is paid only for a minority of shots."},
+      "hebrew":   {"score": 4, "rationale": "Open Hebrew speech models can be chosen locally, with an API fallback."},
+      "dev_time": {"score": 3, "rationale": "Needs GPU setup and routing logic on top of the agent layer."},
+      "vendor":   {"score": 3, "rationale": "Partial dependence: the API can be replaced by local models for most shots."},
+      "privacy":  {"score": 4, "rationale": "Most data stays local; only the hard shots leave the system."}
     }}
   ]
 }

@@ -1,0 +1,10 @@
+# Detector report – ch6-workplan.tex – 2026-11-22
+Summary: 1 critical, 1 medium, 1 minor. Words: 749/600 (prose only; 954 with tables, captions excluded from prose). TO-VERIFY: 2.
+
+Checks run: D1, D2, D3, D4, D5, D6, D7, D8, D9, D10, D11, D12, D13. Passed with no hits: D1 (every Latin run is in \textenglish{}), D2, D3 (fig:ch6-wbs, tab:ch6-wbs, tab:ch6-raci, fig:ch6-gantt are all referenced before they appear), D4 (figure captions below, table captions above), D5 (no \cite in chapter), D6, D7, D13. Schedule values (durations, weeks, reserve weeks) were not treated as bugs, per the team's instruction. Build log (build/main.log, not rebuilt): no Overfull hbox or error points to this chapter; the only Overfull \vbox is at log line 1701, before this chapter starts at log line 2029. The log may predate the latest edits.
+
+| Bug ID | Check | Line | Severity | Problem | Suggested fix |
+|---|---|---|---|---|---|
+| BUG-6-01 | D11 | 50-57 | critical | CH6-03 (requirements.md) asks for "איור וטבלה" for the 14-week Gantt. The chapter has a Gantt figure but no schedule table. Only the WBS and RACI tables exist. Milestones, reserve weeks and dependencies appear only in prose (line 59). Note: agents-setup section 0 budgets 2 tables, which conflicts with the requirement row; the owner should confirm which applies. | Add a table above the Gantt figure, label tab:ch6-schedule, with columns: package, weeks, depends on, reserve week before milestone. Refer to it in line 50 before the figure. Content comes from line 59. |
+| BUG-6-02 | D9 | 1-68 | medium | Prose is 749 words against a 600 target (range 510-690). Excess is about 60 words over the upper limit. | Cut about 60 words from the prose, for example the sentence on rate measurement at the end of line 59 and the reserve-policy paragraph in the milestones section (line 68). |
+| BUG-6-03 | read | 33 | minor | The text defines I (informed), but the RACI table has no I column, so the definition is unused. | Replace "\textenglish{C} מתייעצת ואילו \textenglish{I} מעודכנת" with "\textenglish{C} מתייעצת", and remove I from the definition sentence. |

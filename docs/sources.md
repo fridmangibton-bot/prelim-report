@@ -40,3 +40,7 @@ Note for ch4: market reports disagree strongly (definitions differ). The report 
 | capcut | CapCut | https://www.capcut.com |
 
 Competitor data (prices, features, Hebrew) is in `docs/market-data.md`.
+
+## Addendum (2026-11-22)
+
+- zhao2025moviedreamer: equations, datasets, metrics and results in chapter 3 were read from the arXiv version of the same paper (arXiv 2407.16655, title verified). Same work as the ICLR 2025 paper cited in references.bib.

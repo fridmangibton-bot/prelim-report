@@ -10,3 +10,26 @@
 - ch3-literature: DONE (final). 1 fixer round, not re-detected. Remaining: BUG-ch3-01/02 (flagship equations and setup/results are [TO-VERIFY] placeholders; paper not in docs/), word count near floor, CH3-06 manual source check pending. Build now OK (build.sh bibtex fixed: BIBINPUTS=build;.).
 - ch4-market: DONE (final). 1 fixer round, not re-detected. Remaining: BUG-ch4-04..06 (maqaf before English, need visual check), BUG-ch4-07 (MnM 37.1% period unknown, [TO-VERIFY]), BUG-ch4-10. SAM/SOM numbers (100,000 creators, 0.5%) are placeholder team estimates to confirm.
 - ch1-intro: DONE (final). 1 fixer round, not re-detected. Remaining: BUG-1-05/07/08 overfull hboxes (not visually rechecked), word count ~at floor.
+- 2026-11-22 | ch5-alternatives | ~860 tokens by sed count (target 1500; page budget 8 reached, 8 pages used) + 2 tables + 3 figures (decision PDF, 2 TikZ) | CH5-01..CH5-05 | open [TO-VERIFY]: 0 | build OK, no overfull in ch5; weights/scores labelled as team assessment
+- 2026-11-22 | ch8-summary | ~200 Hebrew words (below 280 target; 1-page budget) | CH8-01 | open [TO-VERIFY]: 0 (new) | build FAILED due to figures/tikz/ch6_wbs.tex:18 pgfkeys '/tikz/out' (not ch8); ch8 wording edited after that build, not rebuilt
+- 2026-11-22 ch2-problem expanded by ~330 Hebrew words (failure impact/measurement, SMART rationale, verification methods); no TO-VERIFY changed; not built.
+- 2026-11-22 ch6-workplan expanded (+~300 words; REQ-NAR-01, CHR-01, LNG-01, CST-01, UX-01, SEC-01 mapped to work packages; no new [TO-VERIFY])
+- 2026-11-22 ch4-market: expanded ~+380 words (per-competitor plans, radar rationale, positioning subsection); [TO-VERIFY] unchanged; not compiled.
+- 2026-11-22 ch5-alternatives expanded by ~550 Hebrew words (alternative paragraphs, weight rationale, sensitivity, agent flows, innovation); not built yet.
+- 2026-11-22 ch3-literature expanded: method, per-paper, architecture implications, MovieDreamer equations/datasets/metrics from arXiv 2407.16655 (new tab:ch3-moviedreamer); [TO-VERIFY] 7 -> 5
+
+## 2026-11-22 finish run: STOPPED before final build (resume here)
+- DONE: charts regenerated without placeholder flag/watermark (decision matrix, Gantt, risk matrix); ch5, ch8 written; ch2/3/4/5/6 expanded (body was ~29 pages vs ~40 target); front matter (title page, abstract ~300 words + 7 keywords, abbreviations); ch6 TikZ WBS (figures/tikz/ch6_wbs.tex) + schedule table; CH3-06 marked done in docs/requirements.md; global \emergencystretch + URL breaking (overfull boxes 20 -> 1 on last good build); final detector round on ch1-ch8 and critical bugs fixed; README status updated.
+- BLOCKED: the last full build (bash scripts/build.sh) was killed by the harness for low system memory. Edits made after the last completed build (45 pages, BUILD OK): ch5 sensitivity paragraph, ch3 citation on MovieDreamer metrics line.
+- TODO next session: (1) run `bash scripts/build.sh` once and confirm BUILD OK + page count; (2) copy build/main.pdf to report/main.pdf; (3) list remaining [TO-VERIFY] with page numbers (pdftotext build/main.pdf, grep); (4) commit (include docs/team.md) and push.
+- Known open (not critical): ch3 BUG-ch3-07..15 (preprints, REQ ids only in concept.md, maqaf BIDI visual checks), ch4/ch5 D13 maqaf visual checks, ch6 prose over word band, ch5 over word band, 1 Overfull \vbox on the abbreviations/list-of-tables page (harmless), ch2/ch3/ch4/ch1/ch6 [TO-VERIFY] markers (ch2 target values x19, ch1 x4-6, ch3 x5, ch4 Atlabs/CapCut prices + selection criteria x5, ch6 x2, ch7 x1).
+
+## 2026-11-22 FINAL: build OK, 45 pages (front matter i-vii, body 1-34, references 35-37), 1 harmless Overfull \vbox
+Remaining [TO-VERIFY] (33 markers in the PDF; body page = PDF page minus 7). All need a source or a measurement; none can be invented.
+- ch1 (body p3, 3 lines in source): audience size in Israel; unsourced claim "products do not log plot events / warn on contradictions"; Hebrew support + production time + cost per minute of the manual process. Reason: no source in docs/sources.md.
+- ch2 (body p4-8, 19 markers): baseline production hours per minute, % of scenes with character drift, contradictions per episode, current Hebrew coverage, and every target value (face-embedding similarity, contradiction detection rate, minutes to first episode, cost per minute). Reason: needs team baseline measurement; no source.
+- ch3 (body p8-14, 5 markers): literature-matrix cells, code availability of MovieDreamer (paper only says code will be released), full-read confirmation of VideoDirectorGPT/StoryAgent state handling, systematic search method.
+- ch4 (body p10-14, 3 lines): Atlabs and CapCut monthly prices (sources conflict, re-check on the pricing pages), criteria for choosing the five products.
+- ch6 (body p27-30, 2 markers): weekly work hours available; number of users in the usability test.
+- ch7 (body p31-34, 1 marker): cost-per-minute target value for R1 (depends on ch2 target).
+Open non-critical bugs: see agents/detector/reports/*-final*.md (maqaf/BIDI visual checks D13, ch3 preprints and REQ ids kept only in ch2/concept.md, ch5 and ch6 prose above word band).

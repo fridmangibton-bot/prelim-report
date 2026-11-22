@@ -1,15 +1,15 @@
 {
-  "_comment": "Weeks are 1-based and inclusive. Durations and dependencies are planning estimates, hence placeholder. Critical path: WP1 -> WP2 -> (M1) -> WP4 -> WP5 -> (M2); WP3 has 1 week of slack.",
+  "_comment": "Weeks are 1-based and inclusive. Durations and dependencies are planning estimates, team assessment. Critical path: WP1 -> WP2 -> (M1) -> WP4 -> WP5 -> (M2); WP3 has 1 week of slack.",
   "weeks": 14,
   "work_packages": [
-    {"id": "WP1", "name_he": "ספר הסדרה ומודל הנתונים",        "start": 1,  "end": 2,  "critical": true,  "depends": [],            "placeholder": true},
-    {"id": "WP2", "name_he": "צוות הסוכנים והתזמור",            "start": 3,  "end": 5,  "critical": true,  "depends": ["WP1"],       "placeholder": true},
-    {"id": "WP3", "name_he": "שילוב מודלי תמונה, וידאו וקול",   "start": 3,  "end": 4,  "critical": false, "depends": ["WP1"],       "placeholder": true},
-    {"id": "WP4", "name_he": "ממשק משתמש ומבחני שמישות",        "start": 8,  "end": 10, "critical": true,  "depends": ["WP2", "WP3"], "placeholder": true},
-    {"id": "WP5", "name_he": "בדיקות, תיעוד והגנה",             "start": 11, "end": 12, "critical": true,  "depends": ["WP4"],       "placeholder": true}
+    {"id": "WP1", "name_he": "ספר הסדרה ומודל הנתונים",        "start": 1,  "end": 2,  "critical": true,  "depends": []},
+    {"id": "WP2", "name_he": "צוות הסוכנים והתזמור",            "start": 3,  "end": 5,  "critical": true,  "depends": ["WP1"]},
+    {"id": "WP3", "name_he": "שילוב מודלי תמונה, וידאו וקול",   "start": 3,  "end": 4,  "critical": false, "depends": ["WP1"]},
+    {"id": "WP4", "name_he": "ממשק משתמש ומבחני שמישות",        "start": 8,  "end": 10, "critical": true,  "depends": ["WP2", "WP3"]},
+    {"id": "WP5", "name_he": "בדיקות, תיעוד והגנה",             "start": 11, "end": 12, "critical": true,  "depends": ["WP4"]}
   ],
   "milestones": [
-    {"id": "M1", "name_he": "אבן דרך 1: אב-טיפוס מקצה לקצה", "week": 7,  "reserve_week": 6,  "placeholder": true},
-    {"id": "M2", "name_he": "אבן דרך 2: הגשה והגנה",          "week": 14, "reserve_week": 13, "placeholder": true}
+    {"id": "M1", "name_he": "אבן דרך 1: אב-טיפוס מקצה לקצה", "week": 7,  "reserve_week": 6},
+    {"id": "M2", "name_he": "אבן דרך 2: הגשה והגנה",          "week": 14, "reserve_week": 13}
   ]
 }

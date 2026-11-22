@@ -57,7 +57,7 @@
 % ---------------------------------------------------------------------
 \RequirePackage{setspace}
 \onehalfspacing                 % 1.5 line spacing; text is justified by default
-\setcounter{tocdepth}{3}
+\emergencystretch=4em           % lets TeX stretch word gaps instead of overflowing the margin (overfull hbox)\setcounter{tocdepth}{3}
 \setcounter{secnumdepth}{3}
 % Figures, tables and equations are numbered per chapter (report default: 3.2).
 

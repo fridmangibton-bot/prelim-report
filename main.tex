@@ -7,6 +7,10 @@
 % NOTE: backend=bibtex because biber.exe hangs on this machine (even `biber --version`).
 \usepackage[backend=bibtex,style=ieee]{biblatex}
 \addbibresource{bib/references.bib}
+% Allow long URLs/DOIs to break across lines (avoids overfull boxes in the reference list).
+\setcounter{biburlnumpenalty}{100}
+\setcounter{biburlucpenalty}{100}
+\setcounter{biburllcpenalty}{100}
 
 \begin{document}
 

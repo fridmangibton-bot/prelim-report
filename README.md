@@ -55,7 +55,7 @@ writer -> detector -> fixer -> (back to detector until clean)
 - **detector** checks the draft and the compiled PDF against the rules, for example sources, `[TO-VERIFY]` markers, captions and BiDi.
 - **fixer** resolves what the detector found and records root causes.
 
-The agents will be built as skills in `.claude/skills/`. They have not been added yet.
+The agents are built as skills in `.claude/skills/` (report-writer, report-detector, report-fixer, report-pipeline).
 
 ## Quality process
 
@@ -64,16 +64,19 @@ The agents will be built as skills in `.claude/skills/`. They have not been adde
 
 ## Status
 
-- [ ] Chapter 1: Introduction
-- [ ] Chapter 2: Problem definition
-- [ ] Chapter 3: Literature review
-- [ ] Chapter 4: Market research
-- [ ] Chapter 5: Design alternatives
-- [ ] Chapter 6: Work plan
-- [ ] Chapter 7: Risks
-- [ ] Chapter 8: Summary
+- [x] Chapter 1: Introduction
+- [x] Chapter 2: Problem definition
+- [x] Chapter 3: Literature review
+- [x] Chapter 4: Market research
+- [x] Chapter 5: Design alternatives
+- [x] Chapter 6: Work plan
+- [x] Chapter 7: Risks
+- [x] Chapter 8: Summary
+- [x] Front matter: title page, executive summary, abbreviations
+- [x] Full PDF built: `report/main.pdf` (45 pages)
+- [ ] Open `[TO-VERIFY]` markers: see `docs/progress.md` (must be resolved before submission)
 
 ## Team
 
-- [NAME 1]
-- [NAME 2]
+- יעלת חן פרידמן
+- עדי ניקול זכרוב

@@ -1,0 +1,11 @@
+# Detector report – ch8-summary.tex – 2026-11-22
+Summary: 0 critical, 3 medium, 1 minor. Words: 261/280 (within ±15%). TO-VERIFY: 0.
+
+Checks run: D1, D2, D5, D6, D7, D8, D9, D10, D11, D12, D13. Passed with no hits: D1, D2, D5 (no \cite), D6, D7, D8 (0 markers), D13. D10: API is defined in ch2 with its Hebrew term, so no first-use problem here. D11: all CH8-01 items are present (one-page summary, findings, readiness, three immediate actions after approval; one directornote). Cross-checked against the data files: the scores 3.50, 3.05, 2.85 match weights.json; "wins in all sensitivity scenarios" matches sensitivity.md (12 of 12); the four critical risks R1, R2, R3, R7 match risks.json (R >= 12). These numbers are correct. Build log: no errors or overfull boxes point to ch8.
+
+| Bug ID | Check | Line | Severity | Problem | Suggested fix |
+|---|---|---|---|---|---|
+| BUG-8-01 | read (cross-check ch5, ch6) | 14 | medium | Action 3 says to begin with work package 1 (the data model) and compare local and API shots. In ch6 the shot comparison belongs to work package 3 (model integration, "יצירת שוט"). ch5 line 83 also places this measurement in the first semester-B work. | Replace "בחבילת עבודה~1" with "בחבילת עבודה~3". |
+| BUG-8-02 | read (cross-check ch4) | 5 | medium | "ואף אחד מהם לא נמצא נגיש בעברית בתוכנית חינמית" states as a finding that no tool is accessible in Hebrew on a free plan. ch4 (line 48 and line 24) says only that this could not be tested on a free plan, and warns that "לא נמצא" is not a claim that the capability is missing. | Replace with "ואף אחד מהם לא נבדק כנגיש בעברית בתוכנית חינמית". |
+| BUG-8-03 | read (cross-check ch1) | 5 | medium | The finding that no product detects contradictions between episodes is stated without [TO-VERIFY]. ch1 line 19 marks the same claim [TO-VERIFY]. The summary therefore presents an open point as settled. | Add [TO-VERIFY] after "מזהה סתירות בין פרקים" in the first sentence of the findings, matching ch1. |
+| BUG-8-04 | read | 18 | minor | The directornote says "הפרויקט מוכן לצאת לדרך", but the readiness section (line 8) says the project is ready only for detailed design and that target values and competitor prices are still pending. | Replace "מוכן לצאת לדרך" with "מוכן לשלב התכן המפורט". |

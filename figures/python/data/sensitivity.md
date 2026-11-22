@@ -20,4 +20,4 @@ Each weight is moved by +/-0.1; the other weights are rescaled proportionally so
 
 Base winner: C. The winner does not change in any of 12 scenarios.
 
-Scores are placeholders (see weights.json), so this result is provisional.
+Scores are the team's assessment (see weights.json), not sourced facts.

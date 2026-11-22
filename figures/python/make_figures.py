@@ -105,7 +105,6 @@ def finish(fig, name, data):
     """Mark placeholder charts, save PDF."""
     if has_placeholder(data):
         placeholder_charts.append(name)
-        fig.text(0.01, 0.99, heb("נתוני דמה"), fontsize=8, color=MAIN, ha="left", va="top")
     fig.savefig(OUT / name, format="pdf", bbox_inches="tight", pad_inches=0.12)
     plt.close(fig)
 
@@ -239,7 +238,7 @@ def sensitivity_md(d):
     lines += ["", f"Base winner: {'/'.join(base_win)}. "
               + (f"The winner changes in {len(changed)} of {len(rows) - 1} scenarios."
                  if changed else f"The winner does not change in any of {len(rows) - 1} scenarios."),
-              "", "Scores are placeholders (see weights.json), so this result is provisional.", ""]
+              "", "Scores are the team's assessment (see weights.json), not sourced facts.", ""]
     (DATA / "sensitivity.md").write_text("\n".join(lines), encoding="utf-8")
     return changed
 
