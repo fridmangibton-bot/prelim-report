@@ -1,70 +1,43 @@
-# Detector report – ch3-literature – 2026-11-21
-Summary: 2 critical, 11 medium, 6 minor. Words: ~1,484/2,000 (prose only; target range 1,700–2,300). TO-VERIFY: 5.
+# Detector report – ch3-literature – 2026-11-23
+Summary: 7 critical, 7 medium, 5 minor. Words: ~1,200/2,000 (rough strip of commands; target range 1,700–2,300). TO-VERIFY: 0. FIGURE PENDING: 0.
+
+Scope: chapters/ch3-literature.tex (165 lines, edited 22:00:53). Build log read: build/main.log (written 22:01:29, after the chapter edit, so the ch3 errors below are current). No build was run.
 
 | Bug ID | Check | Line | Severity | Problem | Suggested fix |
 |---|---|---|---|---|---|
-| BUG-ch3-01 | D11 (CH3-04) | 86 | critical | Flagship model equations not presented: the two loss functions are only a [TO-VERIFY] placeholder. Requirement CH3-04 (equations) is not met. | Read zhao2025moviedreamer, write both loss functions in full (numbered, STY-03). Until then keep the marker. |
-| BUG-ch3-02 | D11 (CH3-04) | 88 | critical | Experimental environment missing: datasets, metrics, hardware and numeric results are all a [TO-VERIFY] placeholder. CH3-04 requires the experimental setup. | Fill from the paper after full read; delete the "סביבת הניסוי" placeholder only when each item is sourced. |
-| BUG-ch3-03 | D13 (BIDI-ORDER) | 4 | medium | "(\textenglish{StoryAgent} ו־\textenglish{VideoDirectorGPT})": Hebrew conjunction with maqaf between two LTR runs. The stale PDF (build/main.pdf, p.14) shows the pair out of order. | No auto-fix (INC-001). Visual check at 300 dpi after a clean build. If reversed, split the parenthesis into two sentences so no Hebrew word sits between the two runs. |
-| BUG-ch3-04 | D13 (BIDI-ORDER) | 8 | medium | "בדף ה־\textenglish{arXiv}": maqaf-joined prefix directly before an LTR run. | Visual check at 300 dpi. No mechanical fix. |
-| BUG-ch3-05 | D13 (BIDI-ORDER) | 8 | medium | "\textenglish{IEEE} ו־\textenglish{ACM}" inside the TO-VERIFY marker: Hebrew conjunction between two LTR runs. | Visual check at 300 dpi; the marker text can be reworded so the runs are not adjacent to a prefix. |
-| BUG-ch3-06 | D13 (BIDI-ORDER) | 8 | medium | "\textenglish{arXiv} ביום \textenglish{21.11.2026}": single Hebrew word between two LTR runs. | Visual check at 300 dpi. |
-| BUG-ch3-07 | D13 (BIDI-ORDER) | 55 | medium | "בכנס או ב־\textenglish{arXiv}": maqaf-joined prefix before an LTR run. | Visual check at 300 dpi. |
-| BUG-ch3-08 | D13 (BIDI-ORDER, range) | 4 | medium | "\textenglish{2023}--\textenglish{2025}": the year range sits between Hebrew text and has no Hebrew word between runs, but the stale PDF (p.14) shows it rendered as "20252023--". | Write the range as one run: \textenglish{2023--2025} and check the 300 dpi crop. |
-| BUG-ch3-09 | D9 BUDGET | 1–107 | medium | Prose is about 1,484 words, 26% under the 2,000 target (±15% = 1,700–2,300). Count excludes figure, matrix table and TO-VERIFY markers. Method: detex-like strip of commands, then whitespace/hyphen split. | Add roughly 220–300 words of substance (e.g. the experiment-setup and equations once read, and a fuller comparison paragraph in 3.1.5). |
-| BUG-ch3-10 | FIG (legibility) | 20 | medium | Figure node "סיפור מרובה סוכנים": \textenglish{VideoDirectorGPT} is hyphenated mid-word ("VideoDi-" / "rectorGPT") in the 2.9 cm text width. Visible in build/main.pdf p.14. Other figure text is legible and arrows run right-to-left. | Use \mbox{\textenglish{VideoDirectorGPT}} inside the node and set text width=3.3cm for the box style (line 15). Centres are 4.2 cm apart, so widths up to about 3.5 cm do not overlap. |
-| BUG-ch3-11 | READ-FACT | 49 | medium | Uncited claim about the third family: "התכנון נוצר מחדש בכל הרצה, ואין מבנה נתונים שנשאר בין הרצות" (VideoDirectorGPT, StoryAgent). No source and no [TO-VERIFY]. Also "ולכן היא זולה להפעלה" (ConsiStory) is an unsourced inference. | Add a citation to the specific paper that supports it, or mark [TO-VERIFY] and soften to "לפי תיאור המאמר". |
-| BUG-ch3-12 | READ-FACT | 88 | medium | "המאמר מדווח על השוואה למערכות קיימות במדדי עקביות וקוהרנטיות": a claim about zhao2025moviedreamer with no citation and no [TO-VERIFY] flag on this sentence. | Add \cite{zhao2025moviedreamer} and confirm after reading the paper, or mark [TO-VERIFY]. |
-| BUG-ch3-13 | READ-FACT / consistency | 90 | medium | "המאמר גם אינו מתמודד עם קלט, קול וכתוביות בעברית. אלה בדיוק שלושת הממדים שהפרויקט מוסיף": claim about the paper's scope is uncited, and the "three dimensions" do not match the three gap components used in lines 93 and 106 (זיכרון עלילה, זיהוי סתירות, עברית). concept.md line 38 lists input, voice and subtitles as the Hebrew-first dimension. | Rephrase so the three dimensions match the gap list (episodes/memory, contradiction detection, Hebrew); add a citation or [TO-VERIFY] for the scope claim. |
-| BUG-ch3-14 | Gap sentence (verbatim) | 102 | minor | Not verbatim with docs/sources.md line 18: the chapter uses maqaf U+05BE in "קצה־לקצה", the source uses ASCII hyphen "קצה-לקצה". Words and punctuation are otherwise identical (251 characters each). | Pick one authority. Recommended: change docs/sources.md line 18 to the maqaf form (correct Hebrew typography). Alternatively change ch3 line 102 to "קצה-לקצה". Caller decides. |
-| BUG-ch3-15 | D13-adjacent (typography) | 41 | minor | "\textenglish{StoryAgent}" breaks as "Sto-/ryAgent" across lines in the stale PDF (p.15). English term broken mid-word. | Wrap as \mbox{\textenglish{StoryAgent}}. |
-| BUG-ch3-16 | STY-06 / quotes | 41 | minor | Straight ASCII quotes in "כ\"במאי\"": not the Hebrew gershayim and not the LaTeX `` '' convention used on line 55. | Replace with ״במאי״ (or ``במאי''). |
-| BUG-ch3-17 | D10 | 19, 36 | minor | "LCT" appears in the figure (line 19) before any text introduces it. "Long Context Tuning" (line 36) is given no Hebrew gloss or short form on first use. | In line 36 write "\textenglish{Long Context Tuning} (\textenglish{LCT})" on first mention; the figure label is acceptable after that. |
-| BUG-ch3-18 | READ-FACT (rhetoric) | 104 | minor | "יוצר שמפיק סדרה ארוכה נתקל בסתירות עלילתיות הרבה לפני שהוא נתקל בדמות שמשנה את פניה" is an unsourced generalisation presented as fact. | Soften ("לעיתים קרובות") or mark [TO-VERIFY] / cite a practitioner source if one is added to docs/sources.md. |
-| BUG-ch3-19 | READ-FACT (sourcing) | 46 | minor | "LongStories.ai שומר על צוות הדמויות, על הקולות ועל העולם בין פרקים": docs/market-data.md confirms series and consistent characters, but not voices or world. Only the note in docs/sources.md supports "קולות". | Confirm "קולות" and "עולם" on the public page (sources.md line 4 verification date), then keep; otherwise trim to "צוות הדמויות". |
+| BUG-ch3-01 | D12 BUILD | 78–86 | critical | Matrix table row separators are a single backslash followed by `\rowrule` (`\ \rowrule`), so rows never end. Log: "Extra alignment tab", "Misplaced \noalign", "You can't use \hrule" at ch3 lines 79–83. The header on line 78 has the same fault. The last row (line 86) also ends with a single `\`. | Replace each trailing `\` on lines 78–86 with `\\` (keep `\rowrule` after it). Matches the convention in style/report.cls line 161. |
+| BUG-ch3-02 | D12 BUILD | 100–108 | critical | Same fault in the code-availability table: `\ \rowrule` on lines 100–107 and a single `\` on line 108. Log: errors at ch3 lines 101–108. | Replace each trailing `\` on lines 100–108 with `\\`. |
+| BUG-ch3-03 | D12 BUILD | 124 | critical | Undefined control sequence `\mathbb{E}` in equation 1. style/report.cls does not load amssymb and defines no `\mathbb`. Log: "Undefined control sequence" at line 124. | Either `\mathbb{E}` → `\mathrm{E}` in the chapter (mechanical), or load amssymb in the style (outside this chapter, caller decides). |
+| BUG-ch3-04 | D12 BUILD | 122 | critical | "Missing $ inserted" at line 122 (`$z_t$` after `\mathcal{D}$`). Math-mode parity is broken in the equation paragraph (lines 122–130). Likely cascade from BUG-ch3-05 and BUG-ch3-06, but not confirmed. | Fix BUG-ch3-05 and BUG-ch3-06 first, rebuild, then re-check line 122. Do not edit other $ pairs blindly. |
+| BUG-ch3-05 | D12 BUILD | 126 | critical | Stray backslash before a math delimiter: `פנים \f$ והטבעת` renders as the undefined control sequence `\f`. Log: "Undefined control sequence" and "Missing $ inserted" at line 126. | `פנים \f$ והטבעת` → `פנים $f$ והטבעת` |
+| BUG-ch3-06 | D12 BUILD | 130 | critical | Double backslash before math: `כאן \\mathcal{L}_{nll}$` (a line break inside text, then an unopened $). Log: "Missing $ inserted" at line 130. | `כאן \\mathcal{L}_{nll}$` → `כאן $\mathcal{L}_{nll}$` |
+| BUG-ch3-07 | READ-FACT (wrong fact on a cited paper) | 48 | critical | DramaAgent is described as "סיפור אורקולי־חזותי" (oracular-visual). docs/sources.md and bib describe it as multi-scene audiovisual story generation. The Hebrew term is a mistranslation of "audiovisual" and misstates the modality of the paper. | Replace with `סיפור אודיו־חזותי (\textenglish{audiovisual})` |
+| BUG-ch3-08 | D13 BIDI-ORDER | 8, 56, 66, 70, 117, 132, 136, 147, 163 | medium | Hebrew prefix or conjunction joined by maqaf directly before a `\textenglish{}` run (`ב־`, `ו־`, `ל־`, `ש־`, `מ־`). Per INC-001 these render reversed. Examples: line 8 `ב־\textenglish{Google Scholar}`; line 70 `ב־\textenglish{VideoDirectorGPT}`; line 163 `ש־\textenglish{DramaAgent}`. | No auto-fix (INC-001: RLM does not help). Visual check of the PDF crop at 300 dpi after the build is fixed. |
+| BUG-ch3-09 | D13 BIDI-ORDER | 8, 56 (×3), 136 | medium | A single Hebrew word sits between two `\textenglish{}` runs: line 8 `\textenglish{ACL Anthology} עבור \textenglish{DramaAgent}`; line 56 `NeurIPS 2024 עבור StoryDiffusion`, `SIGGRAPH 2024 עבור ConsiStory`, `CVPR 2024 עבור Intelligent Grimm`; line 136 `MovieDreamer מול StoryDiffusion`. | Visual check at 300 dpi. If reversed, reword to put the Hebrew word outside the run pair (e.g. `עבור` before the first run). |
+| BUG-ch3-10 | D10 TERM | 120, 132 | medium | No Hebrew term and no expansion on first use: `SDXL` (line 120, "מבוסס על SDXL"); `CLIP` and `FID` (line 132, "ציון CLIP", "מרחק FID"). Line 120 `SVD` is correctly glossed. | Line 120: `מבוסס על מפענח \textenglish{SDXL}` (or gloss as the model name). Line 132: `ציון \textenglish{CLIP} (\textenglish{CLIP} score)` or a Hebrew gloss `ציון התאמה טקסט־תמונה (\textenglish{CLIP})`. `FID`: `מרחק הפרשי התפלגות (\textenglish{FID})`. |
+| BUG-ch3-11 | D9 BUDGET | 1–165 | medium | Prose is about 1,200 words against a 2,000 target (±15% = 1,700–2,300), roughly 40% under. Count is approximate (commands stripped, tables included). | Add substance, e.g. the experimental setup and loss terms in more depth (line 126–131), or a fuller comparison paragraph. Re-count after the edit. |
+| BUG-ch3-12 | Number consistency | 147 vs 143 | medium | MovieDreamer's CLIP score is 19.584 in the results table (line 143) but 19.520 in the text (line 147) for the same method. The text compares against a different set (StreamingT2V, SEINE, FreeNoise), so the two values may both be correct, but the chapter does not say so. | State the comparison set and test setting next to 19.520, or check both values against arXiv 2407.16655 and correct. |
+| BUG-ch3-13 | Consistency (figure vs text) | 56 vs 20–24 | medium | Text says family 3 contains "שני מאמרים מוקדמים ובמאמר אחד מכנס AACL 2026" (three papers, including DramaAgent). The figure's family 3 box lists only VideoDirectorGPT and StoryAgent; DramaAgent appears nowhere in the figure. The matrix (line 86) marks DramaAgent as agentic (תכנון = כן). | Add DramaAgent to the family 3 box (line 23 `\textenglish{VideoDirectorGPT}, \textenglish{StoryAgent}` → add `\textenglish{DramaAgent}`), or state in line 56 that DramaAgent is a separate, newest entry. |
+| BUG-ch3-14 | READ-FACT (overstated gap) | 161 | medium | "ואף אחד אינו נגיש ליוצרים בעברית" is a universal claim. docs/market-data.md (lines 13, 16) reports that Atlabs states Hebrew on paid plans, and CapCut has a Hebrew UI. The team finding is narrower: no tool was testable in Hebrew on a free tier. | Replace with: `ואין כלי שפועל בעברית בתוכנית חינמית, לפי בדיקת הצוות` (matches market-data.md line 16). |
+| BUG-ch3-15 | D11 (must-contain) | 72, 94, 134 | minor | The must-contain list for ch3 is "1 matrix table + 1 figure". The chapter has 3 tables (matrix, code availability, MovieDreamer results) and 1 figure. Not a bug in itself, but it adds to the length problem in BUG-ch3-11. | Caller decision: keep and mention in the budget, or move the code table to ch4. |
+| BUG-ch3-16 | Wording (minor) | 4 | minor | "ושישה מהם בכנסים שפיטים": ConsiStory (tewel2024consistory) is an ACM Transactions on Graphics journal paper, not a conference. The count (six peer-reviewed, two preprints) is still correct. | "ושישה מהם בכנסים או בכתבי עת שפיטים". |
+| BUG-ch3-17 | Wording (minor) | 90, 70 | minor | "ריקות בכל השורות" and "העמודות הריקות" describe the last two matrix columns, but those cells contain "לא", not blanks. | "שהעמודות האחרונות ... מסומנות בכולן ״לא״" or "ריקות מתוכן" in the sense of no positive mark. |
+| BUG-ch3-18 | Wording (minor) | 161 vs 51 | minor | Line 161 says "אף פתרון אינו מנהל זיכרון עלילתי מתמשך", an absolute claim. Line 51 hedges the same product claim as "לפי המידע הציבורי באתרו". | Add "לפי המידע הציבורי" in line 161 for LongStories, or keep the absolute claim only for the research papers ("אף מאמר מהספרות שנסקרה"). |
 
-## Verification results (no bug unless listed above)
-- Cites (D5): all 15 cite keys present in bib/references.bib and in docs/sources.md, including longstories (listed in the competitor section of the whitelist). No cite outside the whitelist.
-- Knowledge-gap sentence: present at line 102, one sentence, matches sources.md except the dash (BUG-ch3-14). The "no product keeps characters" claim is not made: line 46 only says the report will not claim it, and line 102 says "לעיתים גם בין פרקים" for existing products. Pass.
-- D1 BIDI: no Latin letter outside \textenglish in Hebrew prose. The only Latin hits are inside [TO-VERIFY] markers and TikZ syntax. Pass.
-- D2: no Hebrew inside \textenglish. Pass.
-- D3: fig:ch3-families, tab:ch3-matrix, sec:ch3-flagship, sec:ch3-gap all referenced. sec:ch3-matrix (line 54) is not referenced in this chapter (not a D3 bug; only a label). Pass.
-- D4: figure caption below the TikZ picture (line 26); table caption above the tabular (line 59). Pass.
-- D6, D7: no first-person voice outside directornote (line 97 "שלנו" is inside directornote, allowed); no generic openings. Pass.
-- D8: 5 [TO-VERIFY] markers (lines 8, 55, 81, 86, 88). No "FIGURE PENDING".
-- D10: "StoryDiffusion", "Intelligent Grimm", "preprints", "observer", "LLM" have Hebrew or parenthetical glosses where needed. Only BUG-ch3-17 remains.
-- D11 (other CH3 rows): CH3-01 thematic structure, CH3-02 matrix with empty gap columns (lines 62–71), CH3-03 four criteria (line 79), CH3-05 one-sentence gap (line 102) met. CH3-04 partly unmet (BUG-ch3-01/02). CH3-06: verification date stated (line 8); each source is in sources.md as verified. The REQ IDs used (REQ-CHR-01, REQ-NAR-01, REQ-LNG-01) exist in docs/concept.md and chapters/ch2-problem.tex; they are not in docs/requirements.md, which only holds CH2/CH3/STY rows.
-- Figure (inline TikZ, lines 12–28): present. Right-to-left flow (family 1 on the right, gap on the left, arrows point left). Text in nodes is RTL via the class fix (style/report.cls line 84). Legibility problem only at the VideoDirectorGPT hyphenation (BUG-ch3-10).
-- Stale PDF (build/main.pdf, pages 14–15) was viewed as the only available render. It reflects an earlier build and may not match the current .tex.
+## Mechanical checks (passed unless listed above)
+- D1 BIDI: no Latin letters outside `\textenglish{}`, commands, cites, labels or math. The only Latin in Hebrew lines is inside the wrapper. Pass.
+- D2: no Hebrew letter inside any `\textenglish{}` run. Pass.
+- D3: all labels referenced: fig:ch3-families (line 12), tab:ch3-matrix (line 70), tab:ch3-code (lines 92, 117), tab:ch3-moviedreamer (line 132), sec:ch3-flagship (39, 63), sec:ch3-gap (51). sec:ch3-matrix (line 68) is referenced nowhere; not a D3 bug. Pass.
+- D4: figure caption below the TikZ picture (line 29). Table captions above the tabulars (lines 74, 96, 136). Pass.
+- D5 CITE: all 9 keys present in bib/references.bib and docs/sources.md: zhou2024storydiffusion, tewel2024consistory, liu2024grimm, guo2025lct, zhao2025moviedreamer, lin2023videodirectorgpt, hu2024storyagent, huang2026dramaagent, longstories. Pass.
+- D6 VOICE: no first person outside directornote. The line 156 hit ("שלנו") is inside directornote (allowed). The line 126 hit is a false positive inside "גאוסיאנית". Pass.
+- D7 GENERIC: no hits. Pass.
+- D8: 0 [TO-VERIFY], 0 FIGURE PENDING. Equation notation is internally consistent with the surrounding text (D takes z_t, t, E(x_0); L_ar = L_nll + ℓ1 + ℓ2). I did not re-verify it against arXiv 2407.16655 (no web access in this check).
+- D11 CH3 rows in docs/requirements.md: CH3-01 (thematic, lines 6–66), CH3-02 (matrix, lines 68–110), CH3-03 (four criteria, line 115), CH3-04 (model, equations, setup, limitations, lines 119–153), CH3-05 (gap in one sentence, line 161), CH3-06 (sources verified, sources.md). Pass, apart from the issues above.
+- Knowledge-gap sentence (line 161): one sentence, scoped to serial episodes; LongStories.ai and DramaAgent are acknowledged on line 163. Pass apart from BUG-ch3-14/18.
+- Build log, ch3 only: errors at lines 79–83, 101–108 (rows), 122, 124, 126, 130 (listed above). No Overfull hbox points at ch3.
 
-## Build status (D12)
-- build/main.log is truncated: it ends mid-line in the front matter ("Underfull \hbox ... in paragraph a"), build/main.aux is 0 bytes and build/main.toc is 0 bytes. There is no "Output written" line and no final error summary. The log cannot be used to confirm or clear chapter 3.
-- The captured part of the log has no "^!" errors and no Overfull hbox for ch3. Warnings present are in abstract/TOC (Underfull) and biblatex "Language 'hebrew' not supported" (not chapter-specific).
-- Recommended action for the caller (not run by this detector): a clean `bash scripts/build.sh` by the lead, then re-check D12 and the 300 dpi crops for BUG-ch3-03 to 08.
-
-## Notes for caller
+## Notes for caller (outside this chapter)
+- docs/sources.md line 19 (knowledge-gap sentence) contains a typo `\te{huang2026dramaagent}` where `\cite{huang2026dramaagent}` is meant. The chapter itself uses the correct `\cite`. Not a chapter bug.
+- The previous report for this chapter (dated 2026-11-21) described an earlier version of the file (equations and experiment section were [TO-VERIFY] placeholders). It is superseded by this report.
 - Detector did not edit chapters/ch3-literature.tex and did not run scripts/build.sh.
-- D13 bugs follow the skill rule (medium, visual check, no auto-fix). INC-001 says the source order renders correctly in RTL; the stale PDF crop on p.14 still reads "StoryAgent ר־VideoDirectorGPT", so the 300 dpi check is needed.
-
-## Fixer status (2026-11-21)
-| Bug ID | Status |
-|---|---|
-| BUG-ch3-01 | needs input (paper not in docs/; [TO-VERIFY] kept, safe prose added) |
-| BUG-ch3-02 | needs input (paper not in docs/; [TO-VERIFY] kept; unsourced "comparison" claim replaced by a cited focus statement) |
-| BUG-ch3-03 | fixed (sentence split, no Hebrew word between LTR runs; 300 dpi check OK) |
-| BUG-ch3-04 | fixed (reworded to "במאגר arXiv"; 300 dpi check OK) |
-| BUG-ch3-05 | fixed (marker reworded, IEEE/ACM removed; 300 dpi check OK) |
-| BUG-ch3-06 | fixed (date clause reworded; 300 dpi check OK) |
-| BUG-ch3-07 | fixed (reworded; no maqaf prefix) |
-| BUG-ch3-08 | fixed (\textenglish{2023--2025}; renders 2023-2025 correctly) |
-| BUG-ch3-09 | fixed in part (about 300 words added from sources.md facts; word count not re-measured, may still be near the 1,700 floor) |
-| BUG-ch3-10 | fixed (\mbox + text width 3.3cm; renders on one line) |
-| BUG-ch3-11 | fixed (cited + [TO-VERIFY], "זולה" removed) |
-| BUG-ch3-12 | fixed (cited, softened) |
-| BUG-ch3-13 | fixed (three dimensions match gap list; cite + [TO-VERIFY]) |
-| BUG-ch3-14 | fixed (chapter now uses the ASCII hyphen exactly as docs/sources.md) |
-| BUG-ch3-15 | fixed (\mbox) |
-| BUG-ch3-16 | fixed (gershayim) |
-| BUG-ch3-17 | fixed (LCT introduced in text) |
-| BUG-ch3-18 | fixed (softened) |
-| BUG-ch3-19 | fixed (trimmed to cast only) |

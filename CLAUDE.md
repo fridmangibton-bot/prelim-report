@@ -28,3 +28,6 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Build
 - Compile: `bash scripts/build.sh` (lualatex, bibtex, lualatex x2; all output including the PDF goes to `build/`; output is `build/main.pdf`; prints only error lines). `latexmk` is not used because perl is missing on this machine. For another file: `bash scripts/build.sh style/sample.tex`.
 - On errors, show only the error lines from the log, not the full log.
+
+## Git and push verification
+- After every push, verify with `git ls-tree -r origin/master --name-only` that the expected files (for example `report/main.pdf`) are on the remote before reporting success. A file that git ignores is not pushed, even when `git push` succeeds (see INC-007 in `docs/incidents.md`).

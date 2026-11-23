@@ -72,3 +72,13 @@ Log of build and rendering problems. One entry per incident: ID, status, where i
   - Rewrote labels to avoid mixing: "WP1:" became "חבילה 1:", the English term was moved to the end of the label, and the risk key was split into separate ID, name and score texts.
   - Long tick labels are wrapped to two or three lines with `heb(..., wrap=N)`; PDFs are saved with `bbox_inches="tight"`; milestone labels sit below the reserve bands; the watermark moved to the top-left corner inside the saved box.
   - All five charts were regenerated and each mixed label was checked by eye in the rendered PDF.
+
+## INC-007: report/main.pdf reported as pushed but ignored by git
+
+- **Status:** fixed
+- **Date:** 2026-11-23
+- **Where:** `.gitignore`
+- **Symptom:** `report/main.pdf` was missing on GitHub although the agent reported it as pushed.
+- **Cause:** The overly broad `main.pdf` pattern in `.gitignore` also matched `report/main.pdf`, so git silently ignored it.
+- **Fix:** Added the exception `!report/main.pdf` so only build output stays ignored.
+- **Prevention:** After every push, verify with `git ls-tree -r origin/master --name-only` that the expected files are on the remote before reporting success.

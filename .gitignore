@@ -18,6 +18,7 @@ build/
 # Secrets
 .env
 main.pdf
+!report/main.pdf
 *-blx.bib
 
 # Course booklet (third-party, local only; agents grep it)

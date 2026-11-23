@@ -1,14 +1,14 @@
 {
-  "source": "docs/market-data.md section 2",
+  "source": "docs/market-data.md section 2 (Atlabs verified 2026-11-22)",
   "basis_he": "הערכת צוות על בסיס תכונות מוצהרות בדפי המוצר, נבדק ב-21.11.2026",
   "x_label_he": "מחיר חודשי של התוכנית הזולה עם דמויות עקביות (דולר)",
   "y_label_he": "כיסוי יכולות (0–4)",
-  "footnote_he": "* המחיר ממתין לאישור",
+  "footnote_he": "* לפי מקור משני",
   "points": [
     {"name": "LTX Studio",     "ours": false, "price_usd": 35,    "capabilities": 2, "to_verify": false},
     {"name": "OpenArt",        "ours": false, "price_usd": 14,    "capabilities": 2, "to_verify": false},
     {"name": "LongStories.ai", "ours": false, "price_usd": 59,    "capabilities": 3, "to_verify": false},
-    {"name": "Atlabs",         "ours": false, "price_usd": 19,    "capabilities": 3, "to_verify": true},
+    {"name": "Atlabs",         "ours": false, "price_usd": 39,    "capabilities": 3, "to_verify": false},
     {"name": "CapCut", "note_he": "ידני", "ours": false, "price_usd": 19.99, "capabilities": 1, "to_verify": true},
     {"name": "הפתרון המוצע (יעד תכנון)", "ours": true, "price_min": 20, "price_max": 30, "capabilities": 4, "to_verify": false}
   ]

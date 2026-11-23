@@ -10,8 +10,8 @@
 | LTX Studio | $15 (Lite); $35 Standard; $125 Pro | Standard, $35 | Yes (saved "elements") | Not found | Not found (needs payment to test) | Yes | Cannot be tried without paying |
 | OpenArt | $14 (Starter); $34 Plus; $56 Pro; $240 Wonder | Starter, $14 (~13 characters; ~353 on Wonder). Starter has no commercial-use license | Yes | Not found | Not found (needs payment to test) | Yes | Loaded for a long time and produced no result |
 | LongStories.ai | $59 (Pro); $99 Creator; $199 Creator Max; free tier without video | Pro, $59 | Yes ("Universes") | **Yes** – a follow-up video becomes episode 1 of a series automatically | Not found (needs payment to test) | Yes | Cannot be tried without paying |
-| Atlabs | Lite $19 [TO-VERIFY]; Pro $39 [TO-VERIFY]; Plus $79; Max $249 | Lite (limited) – price to confirm on atlabs.ai/pricing | Yes | Not found | **Yes, paid plans only** (confirmed in a chat with Atlabs support) | Yes | Hebrew only behind a paywall |
-| CapCut (manual process) | $19.99 Pro (69.9 ILS in Israel) [TO-VERIFY]; $79 Ultra [TO-VERIFY] | – | No (manual editing) | No | **Yes** (interface in Hebrew) | No – editing only, other AI tools needed | Desktop download required; everything manual |
+| Atlabs | Lite $19; Pro $39; Plus $79; Max $249 (verified on atlabs.ai/pricing, team screenshot 2026-11-22) | Pro, $39 ("Cast Characters & maintain consistency"); Lite does not include it. Translation to 40+ languages only on Max | Yes | Not found | **Yes, paid plans only** (confirmed in a chat with Atlabs support) | Yes | Hebrew only behind a paywall |
+| CapCut (manual process) | $19.99 Pro (69.9 ILS in Israel), according to a secondary source (official pricing page could not be opened) [TO-VERIFY: CapCut footnote] | – | No (manual editing) | No | **Yes** (interface in Hebrew) | No – editing only, other AI tools needed | Desktop download required; everything manual |
 
 Team finding for the report: none of the four AI video tools could be tested in Hebrew on a free tier; only one (Atlabs) states Hebrew support, and only on paid plans. This supports the claim that there is no accessible Hebrew-first tool for creators.
 
@@ -26,7 +26,7 @@ The team has no reliable cost-per-finished-minute data, so the scatter uses veri
 | LTX Studio | 35 | 2 | consistent characters, end-to-end |
 | OpenArt | 14 | 2 | consistent characters, end-to-end |
 | LongStories.ai | 59 | 3 | consistent characters, series, end-to-end |
-| Atlabs | 19 [TO-VERIFY] | 3 | consistent characters, Hebrew (paid), end-to-end |
+| Atlabs | 39 | 3 | consistent characters, Hebrew (paid), end-to-end |
 | CapCut (manual) | 19.99 | 1 | Hebrew |
 | Our solution (design target) | target range 20–30, marked as target | 4 | all four |
 
@@ -59,5 +59,11 @@ Caption note for both charts: "הערכת צוות על בסיס תכונות מ
 - LTX Studio $15/$35/$125 and saved Elements on Standard: confirmed on ltx.studio pricing and LTX plans blog.
 - OpenArt: the partner's figures were old annual prices; corrected to current monthly $14/$34/$56/$240; ~13 / ~353 consistent characters confirmed.
 - LongStories.ai: Pro $59 confirmed; Creator is $99 (the $199 plan is Creator Max) – corrected.
-- Atlabs: Plus $79 and Max $249 confirmed; Lite/Pro prices conflict between sources – confirm on atlabs.ai/pricing before submission.
-- CapCut: not re-checked.
+- Atlabs (2026-11-22): all four prices verified on atlabs.ai/pricing (team screenshot): Lite $19, Pro $39, Plus $79, Max $249. Consistency starts at Pro.
+- CapCut: price from a secondary source; official page could not be opened (kept with asterisk, "לפי מקור משני").
+
+## Team test findings and selection criteria (2026-11-23)
+- None of the four AI tools could be used in Hebrew on a free plan; only Atlabs states Hebrew support, on paid plans (per its support team).
+- Only LongStories.ai offers an explicit series feature.
+- In a review of the product pages, no product presents plot-contradiction detection.
+- Selection criteria: (1) AI video tools with persistent/consistent characters for story videos; (2) public self-serve price; (3) relevance to the Israeli market (Atlabs states Hebrew support; LTX Studio is Israeli, Lightricks); (4) the manual process (CapCut + separate tools) as today's baseline.

@@ -14,10 +14,11 @@
 | zhou2024storydiffusion | StoryDiffusion: Consistent Self-Attention for Long-Range Image and Video Generation | NeurIPS 2024 | Consistent character across a story image sequence, then video | ✔ (arXiv 2405.01434) |
 | tewel2024consistory | Training-Free Consistent Text-to-Image Generation (ConsiStory) | ACM Transactions on Graphics (SIGGRAPH 2024) | Same subject across images without retraining (NVIDIA + Tel Aviv University) | ✔ (arXiv 2402.03286) |
 | liu2024grimm | Intelligent Grimm – Open-ended Visual Storytelling via Latent Diffusion Models | CVPR 2024 | Auto-regressive visual storytelling conditioned on previous frames + StorySalon dataset | ✔ CVPR 2024 open access |
+| huang2026dramaagent | DramaAgent: Agentic Storytelling Video Generation | AACL 2026, pp. 3609–3624 | Hierarchical agentic framework for multi-scene audiovisual story generation; maintains persistent character and story states and repairs failures (reflection-guided targeted repair) within ONE generated story. Most recent and closest work | ✔ ACL Anthology (2026.aacl-long.163) |
 
-**Knowledge gap (one sentence, for ch3):** המחקרים והמוצרים הקיימים שומרים על עקביות חזותית של דמויות ועולם, ולעיתים גם בין פרקים, אך אף אחד מהם אינו מנהל זיכרון של העלילה עצמה (אירועים, יחסים ומצב הדמויות) ואינו מזהה סתירות עלילתיות בין פרקים, ואף אחד אינו נגיש כמערכת קצה-לקצה ליוצרים בעברית.
+**Knowledge gap (one sentence, for ch3):** המחקרים העדכניים כבר שומרים על עקביות חזותית ואף מנהלים מצב סיפור בתוך הפקה אחת \cite{huang2026dramaagent}, ומוצרים מסחריים שומרים דמויות ועולם בין פרקים; אולם אף פתרון אינו מנהל זיכרון עלילתי מתמשך של סדרה שפרקיה מופקים בנפרד לאורך זמן, בשליטת היוצר ועם זיהוי סתירות בין פרקים, ואף אחד אינו נגיש ליוצרים בעברית.
 
-Careful wording note: LongStories.ai keeps cast, voices and world across episodes, so the report must NOT claim that no product keeps characters across episodes. The gap is plot memory + contradiction detection + Hebrew.
+Careful wording note: LongStories.ai keeps cast, voices and world across episodes, and DramaAgent tracks story state within one production, so the report must NOT claim that nothing keeps characters across episodes or tracks story state. The gap is persistent plot memory across separately produced episodes, creator control, contradiction detection and Hebrew.
 
 ## Market size (chapter 1 and 4)
 
