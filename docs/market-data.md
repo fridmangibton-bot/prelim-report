@@ -39,7 +39,7 @@ Basis: the documented features above. Show the 4 competitors that matter most + 
 | Axis | LTX Studio | LongStories.ai | Atlabs | CapCut (manual) | Our solution (target) |
 |---|---|---|---|---|---|
 | עקביות דמות | 4 | 4 | 4 | 1 | 4 |
-| עלות נמוכה | 3 | 2 | 4 | 4 | 4 |
+| עלות נמוכה | 3 | 2 | 3 | 4 | 4 |
 | תמיכה בעברית | 1 | 1 | 3 | 4 | 5 |
 | רציפות עלילתית | 2 | 4 | 2 | 1 | 5 |
 | קלות שימוש | 3 | 4 | 3 | 2 | 5 |
@@ -47,13 +47,13 @@ Basis: the documented features above. Show the 4 competitors that matter most + 
 
 Rationale (one line each, for the chapter text):
 - Consistency: all AI tools offer saved characters; CapCut has none.
-- Low cost: from the entry price for the consistency feature (cheaper = higher). Ours is a design target.
+- Low cost: follows the entry price for the consistency feature (cheaper = higher): CapCut $19.99 and our target $20–30 = 4; LTX Studio $35 and Atlabs $39 = 3; LongStories.ai $59 = 2. Ours is a design target.
 - Hebrew: Atlabs = paid only (3); CapCut = Hebrew UI but no Hebrew generation (4); others not found (1).
 - Narrative continuity: only LongStories has an explicit series feature (4); none keeps a story memory with contradiction checks – our innovation (5).
 - Ease of use: LTX and OpenArt could not be tried; LongStories auto-builds episodes; CapCut needs many manual steps.
 - Creator control: LTX (storyboard + camera control) and CapCut (full manual editing) are highest.
 
-Caption note for both charts: "הערכת צוות על בסיס תכונות מוצהרות בדפי המוצר, נבדק ב-21.11.2026".
+Caption note for both charts: "הערכת צוות על בסיס תכונות מוצהרות בדפי המוצר, נבדק ב-21-22.11.2026".
 
 ## Verification log (2026-11-21)
 - LTX Studio $15/$35/$125 and saved Elements on Standard: confirmed on ltx.studio pricing and LTX plans blog.

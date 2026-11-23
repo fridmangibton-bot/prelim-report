@@ -1,7 +1,7 @@
 {
   "title_he": "השוואת פתרונות לפי שישה צירים",
   "source": "docs/market-data.md section 3",
-  "basis_he": "הערכת צוות על בסיס תכונות מוצהרות בדפי המוצר, נבדק ב-21.11.2026",
+  "basis_he": "הערכת צוות על בסיס תכונות מוצהרות בדפי המוצר, נבדק ב-…21-22.11.2026⁩",
   "scale": [1, 5],
   "axes": [
     {"key": "consistency", "label_he": "עקביות דמות"},
@@ -14,7 +14,7 @@
   "series": [
     {"name": "LTX Studio",        "ours": false, "values": [4, 3, 1, 2, 3, 5]},
     {"name": "LongStories.ai",    "ours": false, "values": [4, 2, 1, 4, 4, 2]},
-    {"name": "Atlabs",            "ours": false, "values": [4, 4, 3, 2, 3, 3]},
+    {"name": "Atlabs",            "ours": false, "values": [4, 3, 3, 2, 3, 3]},
     {"name": "CapCut (ידני)",     "ours": false, "values": [1, 4, 4, 1, 2, 5]},
     {"name": "הפתרון המוצע (יעד תכנון)", "ours": true, "values": [4, 4, 5, 5, 5, 4]}
   ]
