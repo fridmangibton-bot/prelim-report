@@ -62,6 +62,23 @@ The agents are built as skills in `.claude/skills/` (report-writer, report-detec
 - [docs/requirements.md](docs/requirements.md) is the checklist of mandatory requirements (structure, style, figures, sources). Each item is checked off when it is met.
 - [docs/incidents.md](docs/incidents.md) is the root cause log. Every build or rendering problem gets an ID, a status, its cause and its fix.
 
+## Screenshots
+
+Pages from the final PDF (`report/main.pdf`):
+
+| | |
+|---|---|
+| ![Title page](docs/screenshots/01-cover.png) | ![Chapter opener](docs/screenshots/02-chapter-opener.png) |
+| Title page | Chapter opener ("SCENE" panel and film-strip footer) |
+| ![Market radar chart](docs/screenshots/03-market-radar.png) | ![Weighted decision matrix](docs/screenshots/04-decision-matrix.png) |
+| Market research: competitor radar chart (Python) | Design alternatives: weighted decision matrix |
+| ![System architecture](docs/screenshots/05-architecture.png) | ![Gantt chart](docs/screenshots/06-gantt.png) |
+| System architecture (TikZ) | Work plan: 14-week Gantt chart |
+
+## Prompts
+
+All prompts used to steer the AI are kept in [prompts/](prompts/), numbered in the order they were sent, with a note on what the AI did and what we corrected.
+
 ## Status
 
 **Final (2026-11-24).** All chapters written, checked by the detector and fixed; the PDF is `report/main.pdf`.
@@ -76,7 +93,8 @@ The agents are built as skills in `.claude/skills/` (report-writer, report-detec
 - [x] Chapter 8: Summary
 - [x] Front matter: title page, executive summary, abbreviations
 - [x] Full PDF built: `report/main.pdf` (45 pages)
-- [ ] Open `[TO-VERIFY]` markers: see `docs/progress.md` (must be resolved before submission)
+- [x] No open `[TO-VERIFY]` markers in the PDF (checked 2026-11-24)
+- [x] Human page-by-page PDF review: [docs/pdf-review.md](docs/pdf-review.md)
 
 ## Team
 
