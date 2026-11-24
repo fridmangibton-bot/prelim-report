@@ -23,3 +23,7 @@ main.pdf
 
 # Course booklet (third-party, local only; agents grep it)
 docs/book.txt
+
+# OneNote files
+*.onetoc2
+*.one
