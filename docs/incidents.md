@@ -82,3 +82,13 @@ Log of build and rendering problems. One entry per incident: ID, status, where i
 - **Cause:** The overly broad `main.pdf` pattern in `.gitignore` also matched `report/main.pdf`, so git silently ignored it.
 - **Fix:** Added the exception `!report/main.pdf` so only build output stays ignored.
 - **Prevention:** After every push, verify with `git ls-tree -r origin/master --name-only` that the expected files are on the remote before reporting success.
+
+## INC-008: Human page-by-page review found 30 rendering bugs that the detector missed
+
+- **Status:** fixed
+- **Date:** 2026-11-24
+- **Where:** `style/report.cls`, `main.tex`, LTR runs in `chapters/`, `figures/python/make_figures.py`
+- **Symptoms:** bibliography direction, table direction (first column on the left), `--` instead of an en dash, hyphenated English names, lost spaces next to LTR runs, split parentheses, footer "פרק 8/8" in the references.
+- **Cause:** The detector only read the .tex source, and most BiDi bugs appear only in the rendered PDF. In detail: tabular builds its `\halign` in math mode (LuaTeX math direction is LTR); fonts lacked `Ligatures=TeX`; adjacent `\textenglish` runs were written back to back; English hyphenation minima were defaults.
+- **Fix:** Systemic fixes A1-A7 in the class: `\mathdir TRT` inside `tabular` (TikZ keeps its own LTR box from INC-003), `Ligatures=TeX`, English hyphenmins raised, bibliography in the `english` environment with Hebrew heading and a "מקורות" footer. Adjacent LTR runs merged and kept unbreakable (`\mbox`). Single fixes from section B applied. New check D15 (rendered-text check on `pdftotext -enc UTF-8` output, `scripts/d15_check.py`) added to the detector SKILL.md.
+- **Lesson:** A human review of the real PDF is a required step, not an optional one.

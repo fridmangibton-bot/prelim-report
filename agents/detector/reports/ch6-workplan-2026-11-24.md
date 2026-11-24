@@ -1,0 +1,31 @@
+# Detector report – ch6-workplan.tex – 2026-11-24
+Summary: 1 critical, 4 medium, 5 minor. Words: ~671 body (~714 incl. directornote)/600 (body inside ±15%). TO-VERIFY: 0.
+
+| Bug ID | Check | Line | Severity | Problem | Suggested fix |
+|---|---|---|---|---|---|
+| BUG-6-01 | D11 consistency (dependencies) | 77 (conflicts with 69, 75, Gantt fig. 6.2) | critical | Line 77 says WP3 depends only on "הגדרת הממשקים של חבילה 2". Table 6.3 row 3 says WP3 depends on "חבילה 1", and the Gantt draws the arrow from WP1. Line 75 says WP3 runs in parallel with WP2, which matches the table, not line 77. | Line 77: replace "חבילה~3 תלויה רק בהגדרת הממשקים של חבילה~2, ולכן אפשר לבצע אותן במקביל." with "חבילה~3 תלויה רק בספר הסדרה של חבילה~1, ולכן אפשר לבצע אותה במקביל לחבילה~2." |
+| BUG-6-02 | D11 consistency (float) | 75, 77 | medium | Carried over from 2026-11-23 (BUG-6-01 there), still open. Line 75 says WP3 has "שבוע גמישות אחד". By the table, WP3 ends in week 4 and WP4 starts in week 8, so WP3 can slip into weeks 5 to 7 (three weeks of float). Line 77 repeats "שבוע הגמישות שלה". | Line 75: "ולכן יש לה שבוע גמישות אחד" to "ולכן יש לה שלושה שבועות גמישות (שבועות 5 עד 7)". Line 77: "נספג בשבוע הגמישות שלה" to "נספג בשלושת שבועות הגמישות שלה". |
+| BUG-6-03 | D11 cross-reference | 84 | medium | Carried over from 2026-11-23 (BUG-6-02 there), still open. Line 84 says the scope-reduction decision is documented "בטבלת הסיכונים בפרק הבא". Chapter 7 has no scope or decision record (grep for היקף, צמצום, החלטה in ch7-risks.tex returns nothing). | Line 84: replace "מתועדת בטבלת הסיכונים בפרק הבא" with "מתועדת בפרוטוקול פגישת הסקירה". Or add a scope-decision row to ch7 and keep the text. |
+| BUG-6-04 | D6 VOICE | 30 | medium | "נבנה" twice: "בחבילה~1 נבנה מבנה הנתונים" and "בחבילה~4 נבנה ממשק הקלט בעברית". Probably the passive ("is built"), but it is spelled like the first-person plural form, which D6 flags. | "בחבילה~1 נבנה מבנה הנתונים" to "בחבילה~1 ייבנה מבנה הנתונים"; "בחבילה~4 נבנה ממשק הקלט בעברית" to "בחבילה~4 ייבנה ממשק הקלט בעברית". |
+| BUG-6-05 | D9 / D11 budget | 61–73 | medium | Budget row in docs/agents-setup.md section 0 says "2 tables + 2 figures". The chapter has 3 tables (tab:ch6-wbs, tab:ch6-raci, tab:ch6-schedule) and 2 figures. Table 6.3 repeats the Gantt data already given in prose at line 75. | Either delete the tab:ch6-schedule block (lines 61–73) and keep the numbers in line 75, or have the budget row updated to 3 tables. Not a chapter-text fix; the caller decides. |
+| BUG-6-06 | D8 / sourcing | 80 | minor | "שמונה משתמשים חדשים (יעד תכנון)" does not appear in docs/concept.md. It is labelled as a planning target, so it is not an invented fact, but CLAUDE.md asks that unsourced numbers be marked [TO-VERIFY]. | Line 80: "(יעד תכנון)" to "(יעד תכנון; [TO-VERIFY])", or add a source to concept.md. |
+| BUG-6-07 | D15-style layout (rendered PDF, pp. 36–37 of build/main.pdf) | 30, 16–28 | minor | Table 6.1 (source line 16) is placed after most of paragraph line 30, so the paragraph ends on the next page as the orphan "ומצגת ההגנה." under the table. A similar orphan starts p. 38 ("שהיא תלויה בהן הסתיימו."). | Change the placement of the table at line 16 from [h] to [t] or [tbp], then re-render and check the page. Not mechanical. |
+| BUG-6-08 | D12 (underfull, not overfull) | 22–24, 68, 70 | minor | build/main.log has Underfull \hbox (badness 10000) in table rows of narrow p{} columns for this chapter (log range of ch6 file). No Overfull \hbox in the whole log. Cosmetic loose spacing. | Optional: widen the p{} column or shorten the cell text in those rows. |
+| BUG-6-09 | D10 / wording | 33 | minor | The text defines "I מעודכנת" in the RACI legend, but table 6.2 has no I entries. | Line 33: replace " ואילו \textenglish{I} מעודכנת" with "" so the legend lists only R, A and C. |
+| BUG-6-10 | Typography (figure) | fig. 6.2 label | minor | The milestone label in figures/ch6_gantt.pdf reads "אב-טיפוס" with an ASCII hyphen. The text uses the maqaf "אב־טיפוס". The figure is generated from figures/python, so the fix is there, not in the chapter. | Change the label to "אב־טיפוס" in figures/python/make_figures.py and rebuild the figure. |
+
+## Checks with no hits
+- D1 BIDI: no Latin run outside `\textenglish{}`, `\mbox{}`, `\ref`, labels or `\includegraphics`. Every Latin term (WBS, Gantt chart, RACI, REQ-*, R/A/C/I) is wrapped.
+- D2 BIDI-JOIN: no Hebrew inside any `\textenglish{}` (grep returned no matches).
+- D3 REF: labels fig:ch6-wbs, tab:ch6-wbs, tab:ch6-raci, fig:ch6-gantt, tab:ch6-schedule; each has a matching `\ref` in the chapter.
+- D4 CAPTION: both figures have captions below; all three tables have captions above.
+- D5 CITE: no `\cite` in this chapter.
+- D7 GENERIC: none.
+- D8 TO-VERIFY: 0 markers, 0 FIGURE PENDING.
+- D10 TERM: WBS, Gantt chart and RACI each have a Hebrew term and parentheses on first use.
+- D11 REQ: CH6-01 (5 WPs, WBS figure and table), CH6-02 (one R per row, A = supervisor), CH6-03 (14 weeks, two milestones at weeks 7 and 14, reserve weeks 6 and 13) are present. The conflicts are listed above (BUG-6-01 to 6-03).
+- D12 BUILD: no Overfull \hbox in build/main.log. Underfull warnings for this chapter are listed in BUG-6-08. Underfull warnings in the log at lines 1634–1754 belong to the frontmatter, not this chapter.
+- D13 BIDI-ORDER: no maqaf-before/after-`\textenglish{}` pattern and no Hebrew word between two `\textenglish{}` runs.
+- D15 RENDERED-TEXT: `py scripts/d15_check.py build/check.txt` reports only two digit-glued hits (check.txt lines 1793 and 1842), both in the references (report ID and DOI). None in this chapter. pdftotext drops the letter נ in several words (for example "מב‪‬ה"); in the rendered page (p. 36) the letter is present, so this is an extraction artifact and not a bug.
+- Gantt figure (fig. 6.2) matches table 6.3 for weeks, critical path and reserve weeks 6 and 13. The dependency arrow from WP1 to WP3 in the figure agrees with the table and disagrees with line 77 (BUG-6-01).
+- Word count: prose only (tables and figures excluded), about 671 words without the directornote box and about 714 with it. Target 600, range 510–690. The body without the box is inside the band; with the box it is slightly above.

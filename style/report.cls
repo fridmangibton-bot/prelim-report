@@ -45,12 +45,17 @@
 \setmainlanguage{hebrew}
 \setotherlanguage{english}
 % Body: David (Hebrew and Latin). Headings: Arial (Hebrew sans).
-\setmainfont{David}[AutoFakeSlant=0.18]
-\setsansfont{Arial}
+\setmainfont{David}[AutoFakeSlant=0.18,Ligatures=TeX]
+\setsansfont{Arial}[Ligatures=TeX]
 \setmonofont{Consolas}
-\newfontfamily\hebrewfont[Script=Hebrew,AutoFakeSlant=0.18]{David}
-\newfontfamily\hebrewfontsf[Script=Hebrew]{Arial}
+\newfontfamily\hebrewfont[Script=Hebrew,AutoFakeSlant=0.18,Ligatures=TeX]{David}
+\newfontfamily\hebrewfontsf[Script=Hebrew,Ligatures=TeX]{Arial}
 \newfontfamily\hebrewfonttt[Script=Hebrew]{Consolas}
+
+% A4: English words are never hyphenated (minima above any word length).
+\setlanghyphenmins{english}{50}{50}
+% Quotes (biblatex) follow the language of the surrounding text.
+\RequirePackage{csquotes}
 
 % ---------------------------------------------------------------------
 % 4. Layout rules from booklet table 11.1
@@ -72,6 +77,7 @@
 \RequirePackage{graphicx}
 \RequirePackage{booktabs}
 \RequirePackage{array}
+\RequirePackage{longtable}
 \RequirePackage{amsmath}
 \RequirePackage{tikz}
 % RTL fix for LuaTeX: in a right-to-left paragraph every pgf picture (TikZ,
@@ -89,6 +95,8 @@
 
 \newcommand\journal@heading{\sffamily\bfseries\color{ink}}
 \newcommand\journal@totalchapters{8}
+\newif\ifjournal@inrefs       % true in the references: footer shows "מקורות"
+\journal@inrefsfalse
 \newcommand\setchaptertotal[1]{\renewcommand\journal@totalchapters{#1}}
 
 % ---------------------------------------------------------------------
@@ -161,6 +169,11 @@
 %    \headrow  \hcell{A} & \hcell{B} \\   ...   row \\ \rowrule  row \\
 % ---------------------------------------------------------------------
 \renewcommand\arraystretch{1.25}
+% A2: tabular builds its \halign inside math ($\vcenter), and LuaTeX math
+% follows \mathdir, which is LTR. Make it RTL inside tables only, so the
+% first column is on the right. TikZ pictures keep their own LTR box (INC-003).
+\let\journal@tabular\tabular
+\renewcommand\tabular{\mathdir TRT\textdir TRT\journal@tabular}
 \newcommand\headrow{\rowcolor{ink}}
 \newcommand\hcell[1]{{\color{paper}\sffamily\bfseries #1}}
 \newcommand\rowrule{\arrayrulecolor{ruleLight}\hline\arrayrulecolor{ink}}
@@ -215,7 +228,7 @@
     \ifnum\value{chapter}>0
       \node[anchor=east,text=paper,font=\sffamily\scriptsize,inner sep=0pt]
         (PL) at ([xshift=-3.0cm,yshift=1.3cm]current page.south east)
-        {פרק \textenglish{\number\value{chapter}/\journal@totalchapters}};
+        {\ifjournal@inrefs מקורות\else פרק \textenglish{\number\value{chapter}/\journal@totalchapters}\fi};
       \foreach \k in {1,...,\journal@totalchapters}{%
         \ifnum\k>\value{chapter}
           \fill[paper!25!ink]

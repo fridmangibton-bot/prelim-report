@@ -7,6 +7,10 @@
 % NOTE: backend=bibtex because biber.exe hangs on this machine (even `biber --version`).
 \usepackage[backend=bibtex,style=ieee]{biblatex}
 \addbibresource{bib/references.bib}
+% Keep titles exactly as written in the source, and use font-safe quote marks.
+\DeclareFieldFormat{sentencecase}{#1}
+\DeclareFieldFormat{titlecase}{#1}
+\DeclareFieldFormat[article,inproceedings,online,misc,report,techreport,book,unpublished,inbook,incollection]{title}{{\fontspec{Times New Roman}\char"201C}#1{\fontspec{Times New Roman}\char"201D}}
 % Allow long URLs/DOIs to break across lines (avoids overfull boxes in the reference list).
 \setcounter{biburlnumpenalty}{100}
 \setcounter{biburlucpenalty}{100}
@@ -36,6 +40,13 @@
 \input{chapters/ch8-summary}
 
 % ---- References (3 pages budget) ----
-\printbibliography[heading=bibintoc,title={מקורות}]
+% A1: the reference list is English, so it is typeset left-to-right; the
+% heading stays Hebrew. A7: the footer shows "מקורות" instead of a chapter counter.
+\chapter*{מקורות}
+\addcontentsline{toc}{chapter}{מקורות}
+\makeatletter\journal@inrefstrue\makeatother
+\begin{english}
+\printbibliography[heading=none]
+\end{english}
 
 \end{document}

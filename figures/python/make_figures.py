@@ -257,7 +257,7 @@ def chart_decision():
     for i, c in enumerate(crit):
         vals = np.array([c["weight"] * a["scores"][c["key"]]["score"] for a in alts])
         ax.bar(x, vals, 0.55, bottom=bottom, color=colors[i], edgecolor=INK, lw=0.7,
-               hatch=hatches[i], label=heb(f"{c['label_he']} ({c['weight']:.2f})"))
+               hatch=hatches[i], label=heb(f"{c['label_he']}, {c['weight']:.2f}"))
         for xi, v, b in zip(x, vals, bottom):
             if v >= 0.14:
                 ax.text(xi, b + v / 2, f"{v:.2f}", ha="center", va="center", fontsize=8,
@@ -269,14 +269,14 @@ def chart_decision():
     ax.set_xticks(x)
     ax.set_xticklabels([heb(a["label_he"], wrap=16) for a in alts], fontsize=9)
     ax.set_ylim(0, 5)
-    ax.set_ylabel(heb("ציון משוקלל (מתוך 5)"))
+    ax.set_ylabel(heb("ציון משוקלל, סולם 1 עד 5"))
     ax.grid(axis="y", color=INK, alpha=0.15)
     ax.set_axisbelow(True)
     for s in ("top", "right"):
         ax.spines[s].set_visible(False)
     handles, labels = ax.get_legend_handles_labels()
     ax.legend(handles[::-1], labels[::-1], loc="center left", bbox_to_anchor=(1.02, 0.5),
-              fontsize=8.5, frameon=False, title=heb("קריטריון (משקל)"), title_fontsize=9)
+              fontsize=8.5, frameon=False, title=heb("קריטריון ומשקלו"), title_fontsize=9)
     fig.tight_layout()
     finish(fig, "ch5_decision.pdf", d)
 
@@ -349,15 +349,15 @@ def chart_risk():
     d = load("risks.json")
     thr = d["critical_threshold"]
     risks = d["risks"]
-    fig = plt.figure(figsize=(6.8, 4.4))
-    ax = fig.add_axes([0.09, 0.14, 0.46, 0.80])
+    fig = plt.figure(figsize=(6.1, 4.3))
+    ax = fig.add_axes([0.10, 0.17, 0.42, 0.78])
     for p in range(1, 6):
         for i in range(1, 6):
             crit = p * i >= thr
             ax.add_patch(Rectangle((i - 0.5, p - 0.5), 1, 1,
                                    facecolor=MAIN if crit else PAPER, alpha=0.28 if crit else 1,
                                    edgecolor=INK, lw=0.6, zorder=1))
-            ax.text(i + 0.4, p - 0.4, str(p * i), ha="right", va="bottom", fontsize=7, color=INK, alpha=0.5)
+            ax.text(i + 0.4, p - 0.4, str(p * i), ha="right", va="bottom", fontsize=9, color=INK, alpha=0.5)
     # spread risks that share a cell
     cells = {}
     for r in risks:
@@ -367,35 +367,36 @@ def chart_risk():
     for (i, p), grp in cells.items():
         for r, (dx, dy) in zip(grp, offs[min(len(grp), 4)]):
             crit = r["P"] * r["I"] >= thr
-            ax.scatter(i + dx, p + dy, s=330, color=MAIN if crit else INK, edgecolor=INK, lw=0.8, zorder=3)
-            ax.text(i + dx, p + dy, r["id"], ha="center", va="center", fontsize=8,
+            ax.scatter(i + dx, p + dy, s=520, color=MAIN if crit else INK, edgecolor=INK, lw=0.8, zorder=3)
+            ax.text(i + dx, p + dy, r["id"], ha="center", va="center", fontsize=10,
                     fontweight="bold", color=PAPER, zorder=4)
     ax.set_xlim(0.5, 5.5)
     ax.set_ylim(0.5, 5.5)
     ax.set_xticks(range(1, 6))
     ax.set_yticks(range(1, 6))
-    ax.set_xlabel(heb("השפעה – I"))
-    ax.set_ylabel(heb("הסתברות – P"))
+    ax.set_xlabel(heb("השפעה – I"), fontsize=11)
+    ax.set_ylabel(heb("הסתברות – P"), fontsize=11)
+    ax.tick_params(labelsize=11)
     ax.set_aspect("equal")
     for s in ax.spines.values():
         s.set_visible(False)
     ax.tick_params(length=0)
     # key list
-    lx = fig.add_axes([0.58, 0.14, 0.40, 0.80])
+    lx = fig.add_axes([0.55, 0.17, 0.44, 0.78])
     lx.axis("off")
     lx.set_xlim(0, 1)
     lx.set_ylim(0, 1)
     ordered = sorted(risks, key=lambda r: -r["P"] * r["I"])
-    lx.text(1, 1, heb("סיכון"), ha="right", va="top", fontsize=9.5, fontweight="bold")
+    lx.text(1, 1, heb("סיכון"), ha="right", va="top", fontsize=11, fontweight="bold")
     for k, r in enumerate(ordered):
-        y = 0.90 - k * 0.115
+        y = 0.88 - k * 0.135
         R = r["P"] * r["I"]
         crit = R >= thr
         w = "bold" if crit else "normal"
-        lx.text(1, y, r["id"], ha="right", va="center", fontsize=8.5, fontweight=w)
-        lx.text(0.88, y, heb(r["name_he"], wrap=34), ha="right", va="center", fontsize=8.5, fontweight=w)
-        lx.text(0.0, y, f"R={R}", ha="left", va="center", fontsize=8.5, fontweight=w)
-    fig.text(0.58, 0.04, heb(f"האזור הקריטי מוצלל: R ≥ {thr}"), ha="left", fontsize=8.5)
+        lx.text(1, y, r["id"], ha="right", va="center", fontsize=11, fontweight=w)
+        lx.text(0.86, y, heb(r["name_he"], wrap=22), ha="right", va="center", fontsize=11, fontweight=w)
+        lx.text(0.0, y, f"R={R}", ha="left", va="center", fontsize=11, fontweight=w)
+    fig.text(0.55, 0.04, heb(f"האזור הקריטי מוצלל: R ≥ {thr}"), ha="left", fontsize=11)
     finish(fig, "ch7_risk.pdf", d)
 
 

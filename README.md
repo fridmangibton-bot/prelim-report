@@ -64,6 +64,8 @@ The agents are built as skills in `.claude/skills/` (report-writer, report-detec
 
 ## Status
 
+**Final (2026-11-24).** All chapters written, checked by the detector and fixed; the PDF is `report/main.pdf`.
+
 - [x] Chapter 1: Introduction
 - [x] Chapter 2: Problem definition
 - [x] Chapter 3: Literature review
